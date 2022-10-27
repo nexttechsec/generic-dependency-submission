@@ -9539,11 +9539,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
 try {
-    // `who-to-greet` input defined in action metadata file
-    const nameToGreet = core.getInput('who-to-greet');
-    console.log(`Hello ${nameToGreet}!`);
-    const time = (new Date()).toTimeString();
-    core.setOutput("time", time);
+    const language = core.getInput('language');
+    console.log(`Used language: ${language}!`);
+    const dependencyManagementTool = core.getInput('dependency-management');
+    console.log(`Dependency Management tool: ${dependencyManagementTool}!`);
+    const manifestFiles = core.getInput('manifest-files');
+    console.log(`Manifest files: ${manifestFiles}!`);
+    console.log(`The following input was provided: ${language}|${dependencyManagementTool}|${manifestFiles}`);
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2);
     console.log(`The event payload: ${payload}`);
