@@ -28,9 +28,7 @@ try {
         'org.apache.logging.log4j',
         'log4j-core',
         '2.14.1',
-        {
-          scope: 'compile'
-        },
+        null,
         null
       )
     )
@@ -38,7 +36,7 @@ try {
   snapshot.addManifest(buildTarget)
   submitSnapshot(snapshot)
     .then(() => console.log('Uploaded'))
-    .catch(console.error);
+    .catch(console.error)
 
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
