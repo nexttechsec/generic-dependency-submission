@@ -11,7 +11,7 @@ export enum AvailableDependencyManagementToolsEnum {
     POETRY = 'poetry'
 }
 
-export interface ParserInputModel {
+export interface DependencySubmissionInputModel {
     language: AvailableLanguageEnum;
     dependencyManagement: AvailableDependencyManagementToolsEnum;
     manifestFiles: string[];
