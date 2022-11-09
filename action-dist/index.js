@@ -20742,9 +20742,7 @@ try {
         version: '0.0.1'
     });
     const buildTarget = new dependency_submission_toolkit_1.BuildTarget('Project-Name'); // TODO: project name here
-    buildTarget.addBuildDependency(new dependency_submission_toolkit_1.Package(new packageurl_js_1.PackageURL('maven', 'org.apache.logging.log4j', 'log4j-core', '2.14.1', {
-        scope: 'compile'
-    }, null)));
+    buildTarget.addBuildDependency(new dependency_submission_toolkit_1.Package(new packageurl_js_1.PackageURL('maven', 'org.apache.logging.log4j', 'log4j-core', '2.14.1', null, null)));
     snapshot.addManifest(buildTarget);
     (0, dependency_submission_toolkit_1.submitSnapshot)(snapshot)
         .then(() => console.log('Uploaded'))
