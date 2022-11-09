@@ -20738,7 +20738,7 @@ try {
     console.log(`The following input was provided: ${language}|${dependencyManagementTool}|${manifestFiles}`);
     const snapshot = new dependency_submission_toolkit_1.Snapshot({
         name: 'Mvn project',
-        url: github.context.repo.repo,
+        url: 'https://github.com/nexttechsec/log4j-unsecure',
         version: '0.0.1'
     });
     const buildTarget = new dependency_submission_toolkit_1.BuildTarget('Project-Name'); // TODO: project name here

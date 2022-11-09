@@ -17,7 +17,7 @@ try {
 
   const snapshot = new Snapshot({ // TODO: fix configs here
     name: 'Mvn project',
-    url: github.context.repo.repo,
+    url: 'https://github.com/nexttechsec/log4j-unsecure', // TODO: fix configs here
     version: '0.0.1'
   })
   const buildTarget: BuildTarget = new BuildTarget('Project-Name') // TODO: project name here
