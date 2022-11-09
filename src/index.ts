@@ -32,7 +32,7 @@ try {
         null
       )
     )
-  )
+  );
   snapshot.addManifest(buildTarget)
   submitSnapshot(snapshot)
     .then(() => console.log('Uploaded'))
