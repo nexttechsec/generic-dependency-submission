@@ -7,13 +7,13 @@ import {
   submitSnapshot,
 } from "@github/dependency-submission-toolkit";
 import { PackageURL } from "packageurl-js";
-import { InputExtractorService } from "./services/input-extractor/input-extractor.service";
+import { ActionWrapperService } from "./services/action-wrapper/action-wrapper.service";
 import { DependencySubmissionInputModel } from "./models/dependency-submission-input.model";
 import { InputValidatorService } from "./services/validator/input-validator.service";
 
 try {
-  const inputExtractorService: InputExtractorService =
-    new InputExtractorService();
+  const inputExtractorService: ActionWrapperService =
+    new ActionWrapperService();
   const inputValidatorService: InputValidatorService =
     new InputValidatorService(inputExtractorService);
   const data: DependencySubmissionInputModel =

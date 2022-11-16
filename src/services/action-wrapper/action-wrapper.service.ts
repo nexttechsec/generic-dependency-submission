@@ -1,7 +1,14 @@
 import * as core from "@actions/core";
 
 /* istanbul ignore file */
-export class InputExtractorService {
+export class ActionWrapperService {
+  /**
+   * Get the project base path
+   */
+  getProjectBasePath(): string {
+    return process.env["GITHUB_WORKSPACE"] || "";
+  }
+
   /**
    * Get value from GitHub action input
    * @param key key to search for

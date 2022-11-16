@@ -6,18 +6,19 @@ import {
   DependencySubmissionInputModel,
   InputKeysConstants,
 } from "../../models/dependency-submission-input.model";
-import { InputExtractorService } from "../input-extractor/input-extractor.service";
+import { ActionWrapperService } from "../action-wrapper/action-wrapper.service";
 import { EnumUtil } from "../../commons/util/enum-util";
 import * as fs from "fs";
+import * as path from "path";
 
 export class InputValidatorService {
-  constructor(private inputExtractorService: InputExtractorService) {}
+  constructor(private actionWrapperService: ActionWrapperService) {}
 
   /**
    * Extract input and validate it. If it available, return an instance of {@link DependencySubmissionInputModel}
    */
   getAndValidateInput(): DependencySubmissionInputModel {
-    const languageRawValue = this.inputExtractorService.getRawValue(
+    const languageRawValue = this.actionWrapperService.getRawValue(
       InputKeysConstants.LANGUAGE_KEY
     );
     const language = EnumUtil.getEnumKeyByEnumValue(
@@ -30,7 +31,7 @@ export class InputValidatorService {
       throw new AppError(AppErrorType.INVALID_INPUT);
     }
 
-    const dependencyManagementRawValue = this.inputExtractorService.getRawValue(
+    const dependencyManagementRawValue = this.actionWrapperService.getRawValue(
       InputKeysConstants.DEPENDENCY_MANAGEMENT_KEY
     );
     const dependencyManagement: AvailableDependencyManagementEnum =
@@ -46,7 +47,7 @@ export class InputValidatorService {
       throw new AppError(AppErrorType.INVALID_INPUT);
     }
 
-    const manifestFiles = this.inputExtractorService.getListValue(
+    const manifestFiles = this.actionWrapperService.getListValue(
       InputKeysConstants.MANIFEST_FILES_KEY
     );
     if (!manifestFiles?.length) {
@@ -55,7 +56,14 @@ export class InputValidatorService {
     }
 
     for (const manifestFilePath of manifestFiles) {
-      if (!fs.existsSync(manifestFilePath)) {
+      if (
+        !fs.existsSync(
+          path.join(
+            this.actionWrapperService.getProjectBasePath(),
+            manifestFilePath
+          )
+        )
+      ) {
         console.error(`Manifest file: '${manifestFilePath}' does not exist.`);
         throw new AppError(AppErrorType.INVALID_INPUT);
       }

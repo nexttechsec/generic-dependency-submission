@@ -1,5 +1,5 @@
 import { InputValidatorService } from "../../../../src/services/validator/input-validator.service";
-import { InputExtractorService } from "../../../../src/services/input-extractor/input-extractor.service";
+import { ActionWrapperService } from "../../../../src/services/action-wrapper/action-wrapper.service";
 import { AppError } from "../../../../src/commons/error/app-error";
 import { AppErrorType } from "../../../../src/commons/error/app-error-type";
 import {
@@ -11,20 +11,20 @@ import {
 
 describe("InputValidatorService", () => {
   let underTest: InputValidatorService;
-  let inputExtractorServiceMock: InputExtractorService;
+  let inputWrapperServiceMock: ActionWrapperService;
 
   beforeEach(() => {
-    inputExtractorServiceMock = new InputExtractorService();
-    underTest = new InputValidatorService(inputExtractorServiceMock);
+    inputWrapperServiceMock = new ActionWrapperService();
+    underTest = new InputValidatorService(inputWrapperServiceMock);
   });
 
   it("should throw exception if language is not valid", () => {
     // given
-    const inputExtractorServiceMockSpy = jest.spyOn(
-      inputExtractorServiceMock,
+    const actionWrapperServiceMockSpy = jest.spyOn(
+      inputWrapperServiceMock,
       "getRawValue"
     );
-    inputExtractorServiceMockSpy.mockReturnValue("");
+    actionWrapperServiceMockSpy.mockReturnValue("");
 
     // when
     try {
@@ -37,18 +37,18 @@ describe("InputValidatorService", () => {
     }
 
     // then
-    expect(inputExtractorServiceMockSpy).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockSpy).toHaveBeenCalledWith(
       InputKeysConstants.LANGUAGE_KEY
     );
   });
 
   it("should throw exception if dependency-management is not valid", () => {
     // given
-    const inputExtractorServiceMockSpy = jest.spyOn(
-      inputExtractorServiceMock,
+    const actionWrapperServiceMockSpy = jest.spyOn(
+      inputWrapperServiceMock,
       "getRawValue"
     );
-    inputExtractorServiceMockSpy
+    actionWrapperServiceMockSpy
       .mockReturnValueOnce(AvailableLanguageEnum.JAVA)
       .mockReturnValueOnce("");
 
@@ -63,29 +63,29 @@ describe("InputValidatorService", () => {
     }
 
     // then
-    expect(inputExtractorServiceMockSpy).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockSpy).toHaveBeenCalledWith(
       InputKeysConstants.LANGUAGE_KEY
     );
-    expect(inputExtractorServiceMockSpy).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockSpy).toHaveBeenCalledWith(
       InputKeysConstants.DEPENDENCY_MANAGEMENT_KEY
     );
   });
 
   it("should throw exception if manifest-files is not defined", () => {
     // given
-    const inputExtractorServiceMockGetRawValueSpy = jest.spyOn(
-      inputExtractorServiceMock,
+    const actionWrapperServiceMockGetRawValueSpy = jest.spyOn(
+      inputWrapperServiceMock,
       "getRawValue"
     );
-    inputExtractorServiceMockGetRawValueSpy
+    actionWrapperServiceMockGetRawValueSpy
       .mockReturnValueOnce(AvailableLanguageEnum.JAVA)
       .mockReturnValueOnce(AvailableDependencyManagementEnum.MAVEN);
 
-    const inputExtractorServiceMockGetListValue = jest.spyOn(
-      inputExtractorServiceMock,
+    const actionWrapperServiceMockGetListValue = jest.spyOn(
+      inputWrapperServiceMock,
       "getListValue"
     );
-    inputExtractorServiceMockGetListValue.mockReturnValueOnce(
+    actionWrapperServiceMockGetListValue.mockReturnValueOnce(
       undefined as any as string[]
     );
 
@@ -100,34 +100,40 @@ describe("InputValidatorService", () => {
     }
 
     // then
-    expect(inputExtractorServiceMockGetRawValueSpy).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockGetRawValueSpy).toHaveBeenCalledWith(
       InputKeysConstants.LANGUAGE_KEY
     );
-    expect(inputExtractorServiceMockGetRawValueSpy).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockGetRawValueSpy).toHaveBeenCalledWith(
       InputKeysConstants.DEPENDENCY_MANAGEMENT_KEY
     );
-    expect(inputExtractorServiceMockGetListValue).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockGetListValue).toHaveBeenCalledWith(
       InputKeysConstants.MANIFEST_FILES_KEY
     );
   });
 
   it("should return instance of DependencySubmissionInputModel with the right data", () => {
     // given
-    const inputExtractorServiceMockGetRawValueSpy = jest.spyOn(
-      inputExtractorServiceMock,
+    const actionWrapperServiceMockGetRawValueSpy = jest.spyOn(
+      inputWrapperServiceMock,
       "getRawValue"
     );
-    inputExtractorServiceMockGetRawValueSpy
+    actionWrapperServiceMockGetRawValueSpy
       .mockReturnValueOnce(AvailableLanguageEnum.JAVA)
       .mockReturnValueOnce(AvailableDependencyManagementEnum.MAVEN);
 
-    const inputExtractorServiceMockGetListValue = jest.spyOn(
-      inputExtractorServiceMock,
+    const actionWrapperServiceMockGetListValue = jest.spyOn(
+      inputWrapperServiceMock,
       "getListValue"
     );
-    inputExtractorServiceMockGetListValue.mockReturnValueOnce([
+    actionWrapperServiceMockGetListValue.mockReturnValueOnce([
       "tests/helpers/input/java/mvn/simple-proj.out",
     ]);
+
+    const actionWrapperGetProjectBasePathSpy = jest.spyOn(
+      inputWrapperServiceMock,
+      "getProjectBasePath"
+    );
+    actionWrapperGetProjectBasePathSpy.mockReturnValueOnce("");
 
     // when
     const result: DependencySubmissionInputModel =
@@ -139,14 +145,15 @@ describe("InputValidatorService", () => {
       dependencyManagement: AvailableDependencyManagementEnum.MAVEN,
       manifestFiles: ["tests/helpers/input/java/mvn/simple-proj.out"],
     });
-    expect(inputExtractorServiceMockGetRawValueSpy).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockGetRawValueSpy).toHaveBeenCalledWith(
       InputKeysConstants.LANGUAGE_KEY
     );
-    expect(inputExtractorServiceMockGetRawValueSpy).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockGetRawValueSpy).toHaveBeenCalledWith(
       InputKeysConstants.DEPENDENCY_MANAGEMENT_KEY
     );
-    expect(inputExtractorServiceMockGetListValue).toHaveBeenCalledWith(
+    expect(actionWrapperServiceMockGetListValue).toHaveBeenCalledWith(
       InputKeysConstants.MANIFEST_FILES_KEY
     );
+    expect(actionWrapperGetProjectBasePathSpy).toHaveBeenCalled();
   });
 });

@@ -1,5 +1,5 @@
 {
-  "name": "java-mvn-dependency-submission",
+  "name": "generic-dependency-submission",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
