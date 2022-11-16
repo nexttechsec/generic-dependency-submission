@@ -1,5 +1,7 @@
+import { AppErrorType } from "./app-error-type";
+
 export class AppError extends Error {
-    constructor(message: string) {
-        super(message);
-    }
+  constructor(appErrorType: AppErrorType) {
+    super(appErrorType.message);
+  }
 }

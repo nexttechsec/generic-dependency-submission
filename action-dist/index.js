@@ -20728,24 +20728,31 @@ const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
 const dependency_submission_toolkit_1 = __nccwpck_require__(9810);
 const packageurl_js_1 = __nccwpck_require__(8915);
+const input_extractor_service_1 = __nccwpck_require__(4612);
+const dependency_submission_input_model_1 = __nccwpck_require__(2640);
 try {
-    const language = core.getInput('language');
+    const inputExtractorService = new input_extractor_service_1.InputExtractorService();
+    const language = inputExtractorService.getRawValue(dependency_submission_input_model_1.InputConstants.LANGUAGE);
+    // const language = core.getInput("language");
     console.log(`Used language: ${language}!`);
-    const dependencyManagementTool = core.getInput('dependency-management');
+    // const dependencyManagementTool = core.getInput("dependency-management");
+    const dependencyManagementTool = inputExtractorService.getRawValue(dependency_submission_input_model_1.InputConstants.DEPENDENCY_MANAGEMENT_TOOL);
     console.log(`Dependency Management tool: ${dependencyManagementTool}!`);
-    const manifestFiles = core.getInput('manifest-files');
+    // const manifestFiles = core.getInput("manifest-files");
+    const manifestFiles = inputExtractorService.getListValue(dependency_submission_input_model_1.InputConstants.MANIFEST_FILES);
     console.log(`Manifest files: ${manifestFiles}!`);
     console.log(`The following input was provided: ${language}|${dependencyManagementTool}|${manifestFiles}`);
     const snapshot = new dependency_submission_toolkit_1.Snapshot({
-        name: 'Mvn project',
-        url: 'https://github.com/nexttechsec/log4j-unsecure',
-        version: '0.0.1'
+        // TODO: fix configs here
+        name: "Mvn project",
+        url: "https://github.com/nexttechsec/log4j-unsecure",
+        version: "0.0.1",
     });
-    const buildTarget = new dependency_submission_toolkit_1.BuildTarget('Project-Name'); // TODO: project name here
-    buildTarget.addBuildDependency(new dependency_submission_toolkit_1.Package(new packageurl_js_1.PackageURL('maven', 'org.apache.logging.log4j', 'log4j-core', '2.14.1', null, null)));
+    const buildTarget = new dependency_submission_toolkit_1.BuildTarget("Project-Name"); // TODO: project name here
+    buildTarget.addBuildDependency(new dependency_submission_toolkit_1.Package(new packageurl_js_1.PackageURL("maven", "org.apache.logging.log4j", "log4j-core", "2.14.1", null, null)));
     snapshot.addManifest(buildTarget);
     (0, dependency_submission_toolkit_1.submitSnapshot)(snapshot)
-        .then(() => console.log('Uploaded'))
+        .then(() => console.log("Uploaded"))
         .catch(console.error);
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2);
@@ -20754,6 +20761,105 @@ try {
 catch (error) {
     core.setFailed(error === null || error === void 0 ? void 0 : error.message);
 }
+
+
+/***/ }),
+
+/***/ 2640:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AvailableDependencyManagementToolsEnum = exports.AvailableLanguageEnum = exports.InputConstants = void 0;
+class InputConstants {
+    constructor() {
+        // cannot be instantiated
+    }
+}
+exports.InputConstants = InputConstants;
+InputConstants.LANGUAGE = "language";
+InputConstants.DEPENDENCY_MANAGEMENT_TOOL = "dependency-management";
+InputConstants.MANIFEST_FILES = "manifest-files";
+var AvailableLanguageEnum;
+(function (AvailableLanguageEnum) {
+    AvailableLanguageEnum["JAVA"] = "java";
+    AvailableLanguageEnum["JAVASCRIPT"] = "javascript";
+    AvailableLanguageEnum["PYTHON"] = "python";
+})(AvailableLanguageEnum = exports.AvailableLanguageEnum || (exports.AvailableLanguageEnum = {}));
+var AvailableDependencyManagementToolsEnum;
+(function (AvailableDependencyManagementToolsEnum) {
+    // java
+    AvailableDependencyManagementToolsEnum["GRADLE"] = "gradle";
+    AvailableDependencyManagementToolsEnum["MAVEN"] = "maven";
+    // javascript
+    AvailableDependencyManagementToolsEnum["NPM"] = "npm";
+    AvailableDependencyManagementToolsEnum["YARN"] = "yarn";
+    // python
+    AvailableDependencyManagementToolsEnum["PIP"] = "pip";
+    AvailableDependencyManagementToolsEnum["POETRY"] = "poetry";
+})(AvailableDependencyManagementToolsEnum = exports.AvailableDependencyManagementToolsEnum || (exports.AvailableDependencyManagementToolsEnum = {}));
+
+
+/***/ }),
+
+/***/ 4612:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.InputExtractorService = void 0;
+const core = __importStar(__nccwpck_require__(2186));
+class InputExtractorService {
+    /**
+     * Get value from github action input
+     * @param key key to search for
+     */
+    getRawValue(key) {
+        return core.getInput(key);
+    }
+    /**
+     * Github toolkit does not support providing list of string. We have to provide the list as:
+     * <code>
+     *   with:
+     *      some-key: |
+     *          value1
+     *          value2
+     *          value3
+     * </code>
+     * @param key to search for
+     */
+    getListValue(key) {
+        var _a;
+        return (_a = core
+            .getInput(key)) === null || _a === void 0 ? void 0 : _a.split("\n").filter((x) => x !== "");
+    }
+}
+exports.InputExtractorService = InputExtractorService;
 
 
 /***/ }),
