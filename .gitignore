@@ -1,11 +1,4 @@
 node_modules
 .idea
 dist
-
-# Ignore subdirectory and all including directories and files to match pattern as valid for the next pattern
-action-dist
-#!action-dist/index.js
-#!action-dist/index.d.ts
-#!action-dist/licenses.txt
-#!action-dist/sourcemap-register.js
 coverage
