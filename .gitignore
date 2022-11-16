@@ -2,3 +2,8 @@ node_modules
 .idea
 dist
 coverage
+action-dist
+!action-dist/index.js
+!action-dist/index.js.map
+!action-dist/licenses.txt
+!action-dist/sourcemap-register.js
