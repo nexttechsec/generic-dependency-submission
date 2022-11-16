@@ -1,6 +1,6 @@
 import "jest";
-import { EnumUtil } from "./enum-util";
-import { AvailableLanguageEnum } from "../../models/dependency-submission-input.model";
+import { EnumUtil } from "../../../../src/commons/util/enum-util";
+import { AvailableLanguageEnum } from "../../../../src/models/dependency-submission-input.model";
 
 describe("EnumUtil", () => {
   it("should cast known value", () => {
@@ -12,7 +12,7 @@ describe("EnumUtil", () => {
 
     // then
     expect(result).toBeDefined();
-    expect(result).toBe("JAVA");
+    expect(result).toBe(AvailableLanguageEnum.JAVA);
   });
 
   it("should return undefined when no value is found", () => {

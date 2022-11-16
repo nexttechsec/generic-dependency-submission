@@ -1,7 +1,7 @@
-export class InputConstants {
-  public static readonly LANGUAGE = "language";
-  public static readonly DEPENDENCY_MANAGEMENT_TOOL = "dependency-management";
-  public static readonly MANIFEST_FILES = "manifest-files";
+export class InputKeysConstants {
+  public static readonly LANGUAGE_KEY = "language";
+  public static readonly DEPENDENCY_MANAGEMENT_KEY = "dependency-management";
+  public static readonly MANIFEST_FILES_KEY = "manifest-files";
 
   private constructor() {
     // cannot be instantiated
@@ -14,7 +14,7 @@ export enum AvailableLanguageEnum {
   PYTHON = "python",
 }
 
-export enum AvailableDependencyManagementToolsEnum {
+export enum AvailableDependencyManagementEnum {
   // java
   GRADLE = "gradle",
   MAVEN = "maven",
@@ -30,6 +30,6 @@ export enum AvailableDependencyManagementToolsEnum {
 
 export interface DependencySubmissionInputModel {
   language: AvailableLanguageEnum;
-  dependencyManagement: AvailableDependencyManagementToolsEnum;
+  dependencyManagement: AvailableDependencyManagementEnum;
   manifestFiles: string[];
 }

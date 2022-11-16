@@ -1,8 +1,9 @@
 import * as core from "@actions/core";
 
+/* istanbul ignore file */
 export class InputExtractorService {
   /**
-   * Get value from github action input
+   * Get value from GitHub action input
    * @param key key to search for
    */
   getRawValue(key: string): string {
@@ -10,7 +11,7 @@ export class InputExtractorService {
   }
 
   /**
-   * Github toolkit does not support providing list of string. We have to provide the list as:
+   * GitHub toolkit does not support providing list of string. We have to provide the list as:
    * <code>
    *   with:
    *      some-key: |

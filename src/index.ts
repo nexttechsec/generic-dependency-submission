@@ -8,30 +8,18 @@ import {
 } from "@github/dependency-submission-toolkit";
 import { PackageURL } from "packageurl-js";
 import { InputExtractorService } from "./services/input-extractor/input-extractor.service";
-import { InputConstants } from "./models/dependency-submission-input.model";
+import { DependencySubmissionInputModel } from "./models/dependency-submission-input.model";
+import { InputValidatorService } from "./services/validator/input-validator.service";
 
 try {
   const inputExtractorService: InputExtractorService =
     new InputExtractorService();
-  const language = inputExtractorService.getRawValue(InputConstants.LANGUAGE);
-  // const language = core.getInput("language");
-  console.log(`Used language: ${language}!`);
+  const inputValidatorService: InputValidatorService =
+    new InputValidatorService(inputExtractorService);
+  const data: DependencySubmissionInputModel =
+    inputValidatorService.getAndValidateInput();
 
-  // const dependencyManagementTool = core.getInput("dependency-management");
-  const dependencyManagementTool = inputExtractorService.getRawValue(
-    InputConstants.DEPENDENCY_MANAGEMENT_TOOL
-  );
-  console.log(`Dependency Management tool: ${dependencyManagementTool}!`);
-
-  // const manifestFiles = core.getInput("manifest-files");
-  const manifestFiles: string[] = inputExtractorService.getListValue(
-    InputConstants.MANIFEST_FILES
-  );
-  console.log(`Manifest files: ${manifestFiles}!`);
-
-  console.log(
-    `The following input was provided: ${language}|${dependencyManagementTool}|${manifestFiles}`
-  );
+  console.log(`The following input was provided: ${JSON.stringify(data)}`);
 
   const snapshot = new Snapshot({
     // TODO: fix configs here
