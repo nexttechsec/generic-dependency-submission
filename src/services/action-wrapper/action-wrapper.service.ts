@@ -1,4 +1,5 @@
 import * as core from "@actions/core";
+import * as github from "@actions/github";
 
 /* istanbul ignore file */
 export class ActionWrapperService {
@@ -33,5 +34,19 @@ export class ActionWrapperService {
       .getInput(key)
       ?.split("\n")
       .filter((x) => x !== "");
+  }
+
+  /**
+   * Get the project url
+   */
+  getProjectUrl(): string {
+    return github?.context?.payload?.repository?.html_url ?? "";
+  }
+
+  /**
+   * Get project name
+   */
+  getProjectName(): string {
+    return github?.context?.payload?.repository?.name ?? "";
   }
 }

@@ -1,48 +1,50 @@
-import * as core from "@actions/core";
-import * as github from "@actions/github";
+import { DependencySubmissionInputModel } from "./models/dependency-submission-input.model";
+import { ActionWrapperService } from "./services/action-wrapper/action-wrapper.service";
+import { InputValidatorService } from "./services/validator/input-validator.service";
 import {
-  BuildTarget,
-  Package,
   Snapshot,
   submitSnapshot,
 } from "@github/dependency-submission-toolkit";
-import { PackageURL } from "packageurl-js";
-import { ActionWrapperService } from "./services/action-wrapper/action-wrapper.service";
-import { DependencySubmissionInputModel } from "./models/dependency-submission-input.model";
-import { InputValidatorService } from "./services/validator/input-validator.service";
+import * as core from "@actions/core";
+import * as github from "@actions/github";
+import { ParserFactoryService } from "./services/parser/parser-factory.service";
+import { MappingService } from "./services/submission/mapping/mapping.service";
+import { SchemaAggregatorService } from "./services/submission/schema-aggregator/schema-aggregator.service";
 
 try {
   const inputExtractorService: ActionWrapperService =
     new ActionWrapperService();
   const inputValidatorService: InputValidatorService =
     new InputValidatorService(inputExtractorService);
+
+  // validate data
+  console.log("[START] Validate input data");
   const data: DependencySubmissionInputModel =
     inputValidatorService.getAndValidateInput();
-
-  console.log(`The following input was provided: ${JSON.stringify(data)}`);
-
-  const snapshot = new Snapshot({
-    // TODO: fix configs here
-    name: "Mvn project",
-    url: "https://github.com/nexttechsec/log4j-unsecure", // TODO: fix configs here
-    version: "0.0.1",
-  });
-  const buildTarget: BuildTarget = new BuildTarget("Project-Name"); // TODO: project name here
-  buildTarget.addBuildDependency(
-    new Package(
-      new PackageURL(
-        "maven",
-        "org.apache.logging.log4j",
-        "log4j-core",
-        "2.14.1",
-        null,
-        null
-      )
-    )
+  console.log(
+    `[END] Validate input data. Starting processing for: ${JSON.stringify(
+      data
+    )}`
   );
-  snapshot.addManifest(buildTarget);
+
+  const parserFactory: ParserFactoryService = new ParserFactoryService(
+    inputExtractorService
+  );
+  const mappingService: MappingService = new MappingService();
+  const schemaAggregator: SchemaAggregatorService = new SchemaAggregatorService(
+    parserFactory,
+    mappingService
+  );
+
+  const snapshot: Snapshot = schemaAggregator.aggregate(
+    inputExtractorService.getProjectName(),
+    inputExtractorService.getProjectUrl(),
+    "0.0.1", // TODO: Fix project version
+    data
+  );
+
   submitSnapshot(snapshot)
-    .then(() => console.log("Uploaded"))
+    .then(() => console.log("Successfully uploaded"))
     .catch(console.error);
 
   // Get the JSON webhook payload for the event that triggered the workflow

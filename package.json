@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
+    "tsc-watch": "tsc-watch --noClear -p tsconfig.json --onSuccess \"node ./dist/src/index.js\"",
     "prepare": "husky install .husky",
     "format": "prettier -w src",
     "lint": "npx eslint 'src/*.ts' --quiet --fix",
@@ -28,7 +29,8 @@
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
     "@github/dependency-submission-toolkit": "^1.2.6",
-    "@octokit/rest": "^18.12.0"
+    "@octokit/rest": "^18.12.0",
+    "fast-xml-parser": "^4.0.11"
   },
   "devDependencies": {
     "@types/jest": "^29.2.1",
@@ -43,6 +45,7 @@
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
     "ts-jest": "^29.0.3",
+    "tsc-watch": "^5.0.3",
     "typescript": "^4.8.4"
   },
   "lint-staged": {

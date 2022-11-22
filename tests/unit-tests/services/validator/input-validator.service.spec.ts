@@ -126,7 +126,7 @@ describe("InputValidatorService", () => {
       "getListValue"
     );
     actionWrapperServiceMockGetListValue.mockReturnValueOnce([
-      "tests/helpers/input/java/mvn/simple-proj.out",
+      "tests/helpers/input/java/mvn/dependency.graphml",
     ]);
 
     const actionWrapperGetProjectBasePathSpy = jest.spyOn(
@@ -143,7 +143,7 @@ describe("InputValidatorService", () => {
     expect(result).toEqual({
       language: AvailableLanguageEnum.JAVA,
       dependencyManagement: AvailableDependencyManagementEnum.MAVEN,
-      manifestFiles: ["tests/helpers/input/java/mvn/simple-proj.out"],
+      manifestFiles: ["tests/helpers/input/java/mvn/dependency.graphml"],
     });
     expect(actionWrapperServiceMockGetRawValueSpy).toHaveBeenCalledWith(
       InputKeysConstants.LANGUAGE_KEY
