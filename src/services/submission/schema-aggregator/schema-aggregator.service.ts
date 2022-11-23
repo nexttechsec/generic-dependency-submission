@@ -31,9 +31,9 @@ export class SchemaAggregatorService {
       );
 
     const snapshot = new Snapshot({
-      name: projectName,
-      url: projectUrl,
-      version: projectVersion,
+      name: "generic-dependency-submission",
+      url: "https://github.com/nexttechsec/generic-dependency-submission",
+      version: "2.11", // TODO: do not hardcode the version
     });
 
     for (const manifestPath of dependencySubmissionModel.manifestFiles) {

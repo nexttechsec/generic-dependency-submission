@@ -23429,9 +23429,9 @@ class SchemaAggregatorService {
     aggregate(projectName, projectUrl, projectVersion, dependencySubmissionModel) {
         const parserService = this.parserFactoryService.getParserByCondition(dependencySubmissionModel.language, dependencySubmissionModel.dependencyManagement);
         const snapshot = new dependency_submission_toolkit_1.Snapshot({
-            name: projectName,
-            url: projectUrl,
-            version: projectVersion,
+            name: "generic-dependency-submission",
+            url: "https://github.com/nexttechsec/generic-dependency-submission",
+            version: "2.11", // TODO: do not hardcode the version
         });
         for (const manifestPath of dependencySubmissionModel.manifestFiles) {
             console.log(`[START] Parsing file ${manifestPath}`);
