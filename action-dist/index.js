@@ -23364,7 +23364,7 @@ class MappingService {
         const treeModel = outputModel.output;
         const root = treeModel.root;
         const rootData = root.data;
-        const manifest = new dependency_submission_toolkit_1.Manifest(rootData.name, outputModel.input.manifestPath);
+        const manifest = new dependency_submission_toolkit_1.Manifest(rootData.name);
         // create all dependencies
         const newPackages = this.createPackageStructureRecursive(root, []).slice(1); // remove parent node and start with the first layer
         for (const newPackage of newPackages) {

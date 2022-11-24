@@ -22,10 +22,7 @@ export class MappingService {
     const root: TreeNode<string, ParserOutputItemModel> = treeModel.root;
     const rootData: ParserOutputItemModel = root.data;
 
-    const manifest = new Manifest(
-      rootData.name,
-      outputModel.input.manifestPath
-    );
+    const manifest = new Manifest(rootData.name);
 
     // create all dependencies
     const newPackages = this.createPackageStructureRecursive(root, []).slice(1); // remove parent node and start with the first layer
