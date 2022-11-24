@@ -28,7 +28,7 @@ export class NpmParserService
       this.getFile(dependencySubmissionInputItemModel.manifestPath) as string
     );
 
-    const tree: TreeModel<string, ParserOutputItemModel> =
+    const dependencyTree: TreeModel<string, ParserOutputItemModel> =
       this.buildDependencyTree(
         dependencySubmissionInputItemModel,
         `${fileContent.name}:${fileContent.version}`,
@@ -42,17 +42,17 @@ export class NpmParserService
 
     return {
       input: dependencySubmissionInputItemModel,
-      output: tree,
+      output: dependencyTree,
     };
   }
 
   /**
-   * Build
-   * @param dependencySubmissionInputItemModel
-   * @param rootId
-   * @param parent
-   * @param dependencyName
-   * @param dependency
+   * Build dependency tree
+   * @param dependencySubmissionInputItemModel instance of {@link DependencySubmissionInputItemModel}
+   * @param rootId root id of the tree (in this case will be dependencyName:version
+   * @param parent instance of {@link TreeNode}
+   * @param dependencyName the name of the dependency
+   * @param dependency dependency information
    * @private
    */
   private buildDependencyTree(

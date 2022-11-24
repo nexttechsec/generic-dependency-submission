@@ -23310,22 +23310,22 @@ class NpmParserService extends abstract_parser_service_1.AbstractParserService {
     }
     parse(dependencySubmissionInputItemModel) {
         const fileContent = JSON.parse(this.getFile(dependencySubmissionInputItemModel.manifestPath));
-        const tree = this.buildDependencyTree(dependencySubmissionInputItemModel, `${fileContent.name}:${fileContent.version}`, null, fileContent.name, {
+        const dependencyTree = this.buildDependencyTree(dependencySubmissionInputItemModel, `${fileContent.name}:${fileContent.version}`, null, fileContent.name, {
             version: fileContent.version,
             dependencies: fileContent.dependencies,
         });
         return {
             input: dependencySubmissionInputItemModel,
-            output: tree,
+            output: dependencyTree,
         };
     }
     /**
-     * Build
-     * @param dependencySubmissionInputItemModel
-     * @param rootId
-     * @param parent
-     * @param dependencyName
-     * @param dependency
+     * Build dependency tree
+     * @param dependencySubmissionInputItemModel instance of {@link DependencySubmissionInputItemModel}
+     * @param rootId root id of the tree (in this case will be dependencyName:version
+     * @param parent instance of {@link TreeNode}
+     * @param dependencyName the name of the dependency
+     * @param dependency dependency information
      * @private
      */
     buildDependencyTree(dependencySubmissionInputItemModel, rootId, parent, dependencyName, dependency) {
