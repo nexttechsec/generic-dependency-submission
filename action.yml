@@ -1,13 +1,19 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Generic dependency submission'
+description: 'Dependency submission parser for different dependencies sources.'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  token:
+    description: "GitHub Personal Access Token (PAT). Defaults to PAT provided by Action runner"
+    required: false
+    default: ${{ github.token }}
+  language:
+    description: "Programming language (e.g: java, python, javascript)"
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  dependency-management:
+    description: "Dependency management used (maven, gradle, pip, npm etc)"
+    required: true
+  manifest-files:
+    description: "List of files which should be parsed"
+    required: true
 runs:
   using: 'node16'
-  main: 'dist/index.js'
+  main: 'action-dist/index.js'
