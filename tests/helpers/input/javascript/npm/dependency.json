@@ -1,0 +1,1322 @@
+{
+  "version": "1.0.0",
+  "name": "node-js-insecure",
+  "dependencies": {
+    "@stdlib/namespace": {
+      "version": "0.0.12",
+      "resolved": "https://registry.npmjs.org/@stdlib/namespace/-/namespace-0.0.12.tgz",
+      "dependencies": {
+        "@stdlib/array": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/array/-/array-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/blas": {
+              "version": "0.0.12"
+            },
+            "@stdlib/complex": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/symbol": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14",
+              "resolved": "https://registry.npmjs.org/@stdlib/types/-/types-0.0.14.tgz"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/assert": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/assert/-/assert-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/complex": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/ndarray": {
+              "version": "0.0.13"
+            },
+            "@stdlib/number": {
+              "version": "0.0.10"
+            },
+            "@stdlib/os": {
+              "version": "0.0.12"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/regexp": {
+              "version": "0.0.13"
+            },
+            "@stdlib/streams": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/symbol": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/bench": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/bench/-/bench-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/regexp": {
+              "version": "0.0.13"
+            },
+            "@stdlib/streams": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/time": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            },
+            "glob": {
+              "version": "7.2.3",
+              "resolved": "https://registry.npmjs.org/glob/-/glob-7.2.3.tgz",
+              "dependencies": {
+                "fs.realpath": {
+                  "version": "1.0.0",
+                  "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
+                },
+                "inflight": {
+                  "version": "1.0.6",
+                  "resolved": "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz",
+                  "dependencies": {
+                    "once": {
+                      "version": "1.4.0"
+                    },
+                    "wrappy": {
+                      "version": "1.0.2",
+                      "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
+                    }
+                  }
+                },
+                "inherits": {
+                  "version": "2.0.4",
+                  "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz"
+                },
+                "minimatch": {
+                  "version": "3.1.2",
+                  "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.1.2.tgz",
+                  "dependencies": {
+                    "brace-expansion": {
+                      "version": "1.1.11",
+                      "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz",
+                      "dependencies": {
+                        "balanced-match": {
+                          "version": "1.0.2",
+                          "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
+                        },
+                        "concat-map": {
+                          "version": "0.0.1",
+                          "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
+                        }
+                      }
+                    }
+                  }
+                },
+                "once": {
+                  "version": "1.4.0",
+                  "resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
+                  "dependencies": {
+                    "wrappy": {
+                      "version": "1.0.2"
+                    }
+                  }
+                },
+                "path-is-absolute": {
+                  "version": "1.0.1",
+                  "resolved": "https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz"
+                }
+              }
+            },
+            "resolve": {
+              "version": "1.22.1",
+              "resolved": "https://registry.npmjs.org/resolve/-/resolve-1.22.1.tgz",
+              "dependencies": {
+                "is-core-module": {
+                  "version": "2.11.0",
+                  "resolved": "https://registry.npmjs.org/is-core-module/-/is-core-module-2.11.0.tgz",
+                  "dependencies": {
+                    "has": {
+                      "version": "1.0.3",
+                      "resolved": "https://registry.npmjs.org/has/-/has-1.0.3.tgz",
+                      "dependencies": {
+                        "function-bind": {
+                          "version": "1.1.1",
+                          "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz"
+                        }
+                      }
+                    }
+                  }
+                },
+                "path-parse": {
+                  "version": "1.0.7",
+                  "resolved": "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz"
+                },
+                "supports-preserve-symlinks-flag": {
+                  "version": "1.0.0",
+                  "resolved": "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
+                }
+              }
+            }
+          }
+        },
+        "@stdlib/bigint": {
+          "version": "0.0.11",
+          "resolved": "https://registry.npmjs.org/@stdlib/bigint/-/bigint-0.0.11.tgz",
+          "dependencies": {
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/blas": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/blas/-/blas-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/number": {
+              "version": "0.0.10"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/buffer": {
+          "version": "0.0.11",
+          "resolved": "https://registry.npmjs.org/@stdlib/buffer/-/buffer-0.0.11.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/cli": {
+          "version": "0.0.10",
+          "resolved": "https://registry.npmjs.org/@stdlib/cli/-/cli-0.0.10.tgz",
+          "dependencies": {
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            },
+            "minimist": {
+              "version": "1.2.7",
+              "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.7.tgz"
+            }
+          }
+        },
+        "@stdlib/complex": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/complex/-/complex-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/constants": {
+          "version": "0.0.11",
+          "resolved": "https://registry.npmjs.org/@stdlib/constants/-/constants-0.0.11.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/number": {
+              "version": "0.0.10"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/datasets": {
+          "version": "0.0.14",
+          "resolved": "https://registry.npmjs.org/@stdlib/datasets/-/datasets-0.0.14.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/buffer": {
+              "version": "0.0.11"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/streams": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/error": {
+          "version": "0.0.13",
+          "resolved": "https://registry.npmjs.org/@stdlib/error/-/error-0.0.13.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/fs": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/fs/-/fs-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            },
+            "debug": {
+              "version": "2.6.9",
+              "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",
+              "dependencies": {
+                "ms": {
+                  "version": "2.0.0",
+                  "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz"
+                }
+              }
+            }
+          }
+        },
+        "@stdlib/iter": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/iter/-/iter-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/symbol": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/math": {
+          "version": "0.0.11",
+          "resolved": "https://registry.npmjs.org/@stdlib/math/-/math-0.0.11.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/ndarray": {
+              "version": "0.0.13"
+            },
+            "@stdlib/number": {
+              "version": "0.0.10"
+            },
+            "@stdlib/strided": {
+              "version": "0.0.12"
+            },
+            "@stdlib/symbol": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            },
+            "debug": {
+              "version": "2.6.9"
+            }
+          }
+        },
+        "@stdlib/ml": {
+          "version": "0.0.11",
+          "resolved": "https://registry.npmjs.org/@stdlib/ml/-/ml-0.0.11.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/blas": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/ndarray": {
+              "version": "0.0.13"
+            },
+            "@stdlib/random": {
+              "version": "0.0.12"
+            },
+            "@stdlib/stats": {
+              "version": "0.0.13"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/ndarray": {
+          "version": "0.0.13",
+          "resolved": "https://registry.npmjs.org/@stdlib/ndarray/-/ndarray-0.0.13.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/bigint": {
+              "version": "0.0.11"
+            },
+            "@stdlib/buffer": {
+              "version": "0.0.11"
+            },
+            "@stdlib/complex": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/number": {
+              "version": "0.0.10"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/net": {
+          "version": "0.0.13",
+          "resolved": "https://registry.npmjs.org/@stdlib/net/-/net-0.0.13.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/buffer": {
+              "version": "0.0.11"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            },
+            "debug": {
+              "version": "2.6.9"
+            }
+          }
+        },
+        "@stdlib/nlp": {
+          "version": "0.0.11",
+          "resolved": "https://registry.npmjs.org/@stdlib/nlp/-/nlp-0.0.11.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/random": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/number": {
+          "version": "0.0.10",
+          "resolved": "https://registry.npmjs.org/@stdlib/number/-/number-0.0.10.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/os": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/os": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/os/-/os-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/plot": {
+          "version": "0.0.6",
+          "resolved": "https://registry.npmjs.org/@stdlib/plot/-/plot-0.0.6.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/net": {
+              "version": "0.0.13"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/random": {
+              "version": "0.0.12"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            },
+            "d3-format": {
+              "version": "1.4.5",
+              "resolved": "https://registry.npmjs.org/d3-format/-/d3-format-1.4.5.tgz"
+            },
+            "d3-scale": {
+              "version": "1.0.7",
+              "resolved": "https://registry.npmjs.org/d3-scale/-/d3-scale-1.0.7.tgz",
+              "dependencies": {
+                "d3-array": {
+                  "version": "1.2.4",
+                  "resolved": "https://registry.npmjs.org/d3-array/-/d3-array-1.2.4.tgz"
+                },
+                "d3-collection": {
+                  "version": "1.0.7",
+                  "resolved": "https://registry.npmjs.org/d3-collection/-/d3-collection-1.0.7.tgz"
+                },
+                "d3-color": {
+                  "version": "1.4.1",
+                  "resolved": "https://registry.npmjs.org/d3-color/-/d3-color-1.4.1.tgz"
+                },
+                "d3-format": {
+                  "version": "1.4.5"
+                },
+                "d3-interpolate": {
+                  "version": "1.4.0",
+                  "resolved": "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-1.4.0.tgz",
+                  "dependencies": {
+                    "d3-color": {
+                      "version": "1.4.1"
+                    }
+                  }
+                },
+                "d3-time-format": {
+                  "version": "2.3.0"
+                },
+                "d3-time": {
+                  "version": "1.1.0",
+                  "resolved": "https://registry.npmjs.org/d3-time/-/d3-time-1.1.0.tgz"
+                }
+              }
+            },
+            "d3-shape": {
+              "version": "1.3.7",
+              "resolved": "https://registry.npmjs.org/d3-shape/-/d3-shape-1.3.7.tgz",
+              "dependencies": {
+                "d3-path": {
+                  "version": "1.0.9",
+                  "resolved": "https://registry.npmjs.org/d3-path/-/d3-path-1.0.9.tgz"
+                }
+              }
+            },
+            "d3-time-format": {
+              "version": "2.3.0",
+              "resolved": "https://registry.npmjs.org/d3-time-format/-/d3-time-format-2.3.0.tgz",
+              "dependencies": {
+                "d3-time": {
+                  "version": "1.1.0"
+                }
+              }
+            },
+            "debug": {
+              "version": "2.6.9"
+            },
+            "vdom-to-html": {
+              "version": "2.3.1",
+              "resolved": "https://registry.npmjs.org/vdom-to-html/-/vdom-to-html-2.3.1.tgz",
+              "dependencies": {
+                "escape-html": {
+                  "version": "1.0.3"
+                },
+                "param-case": {
+                  "version": "1.1.2",
+                  "resolved": "https://registry.npmjs.org/param-case/-/param-case-1.1.2.tgz",
+                  "dependencies": {
+                    "sentence-case": {
+                      "version": "1.1.3",
+                      "resolved": "https://registry.npmjs.org/sentence-case/-/sentence-case-1.1.3.tgz",
+                      "dependencies": {
+                        "lower-case": {
+                          "version": "1.1.4",
+                          "resolved": "https://registry.npmjs.org/lower-case/-/lower-case-1.1.4.tgz"
+                        }
+                      }
+                    }
+                  }
+                },
+                "virtual-dom": {
+                  "version": "2.1.1",
+                  "resolved": "https://registry.npmjs.org/virtual-dom/-/virtual-dom-2.1.1.tgz",
+                  "dependencies": {
+                    "browser-split": {
+                      "version": "0.0.1",
+                      "resolved": "https://registry.npmjs.org/browser-split/-/browser-split-0.0.1.tgz"
+                    },
+                    "error": {
+                      "version": "4.4.0",
+                      "resolved": "https://registry.npmjs.org/error/-/error-4.4.0.tgz",
+                      "dependencies": {
+                        "camelize": {
+                          "version": "1.0.1",
+                          "resolved": "https://registry.npmjs.org/camelize/-/camelize-1.0.1.tgz"
+                        },
+                        "string-template": {
+                          "version": "0.2.1",
+                          "resolved": "https://registry.npmjs.org/string-template/-/string-template-0.2.1.tgz"
+                        },
+                        "xtend": {
+                          "version": "4.0.2"
+                        }
+                      }
+                    },
+                    "ev-store": {
+                      "version": "7.0.0",
+                      "resolved": "https://registry.npmjs.org/ev-store/-/ev-store-7.0.0.tgz",
+                      "dependencies": {
+                        "individual": {
+                          "version": "3.0.0",
+                          "resolved": "https://registry.npmjs.org/individual/-/individual-3.0.0.tgz"
+                        }
+                      }
+                    },
+                    "global": {
+                      "version": "4.4.0",
+                      "resolved": "https://registry.npmjs.org/global/-/global-4.4.0.tgz",
+                      "dependencies": {
+                        "min-document": {
+                          "version": "2.19.0",
+                          "resolved": "https://registry.npmjs.org/min-document/-/min-document-2.19.0.tgz",
+                          "dependencies": {
+                            "dom-walk": {
+                              "version": "0.1.2",
+                              "resolved": "https://registry.npmjs.org/dom-walk/-/dom-walk-0.1.2.tgz"
+                            }
+                          }
+                        },
+                        "process": {
+                          "version": "0.11.10",
+                          "resolved": "https://registry.npmjs.org/process/-/process-0.11.10.tgz"
+                        }
+                      }
+                    },
+                    "is-object": {
+                      "version": "1.0.2",
+                      "resolved": "https://registry.npmjs.org/is-object/-/is-object-1.0.2.tgz"
+                    },
+                    "next-tick": {
+                      "version": "0.2.2",
+                      "resolved": "https://registry.npmjs.org/next-tick/-/next-tick-0.2.2.tgz"
+                    },
+                    "x-is-array": {
+                      "version": "0.1.0",
+                      "resolved": "https://registry.npmjs.org/x-is-array/-/x-is-array-0.1.0.tgz"
+                    },
+                    "x-is-string": {
+                      "version": "0.1.0",
+                      "resolved": "https://registry.npmjs.org/x-is-string/-/x-is-string-0.1.0.tgz"
+                    }
+                  }
+                },
+                "xtend": {
+                  "version": "4.0.2",
+                  "resolved": "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz"
+                }
+              }
+            }
+          }
+        },
+        "@stdlib/process": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/process/-/process-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/buffer": {
+              "version": "0.0.11"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/streams": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/proxy": {
+          "version": "0.0.11",
+          "resolved": "https://registry.npmjs.org/@stdlib/proxy/-/proxy-0.0.11.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/random": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/random/-/random-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/blas": {
+              "version": "0.0.12"
+            },
+            "@stdlib/buffer": {
+              "version": "0.0.11"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/stats": {
+              "version": "0.0.13"
+            },
+            "@stdlib/streams": {
+              "version": "0.0.12"
+            },
+            "@stdlib/symbol": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            },
+            "debug": {
+              "version": "2.6.9"
+            },
+            "readable-stream": {
+              "version": "2.3.7",
+              "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.7.tgz",
+              "dependencies": {
+                "core-util-is": {
+                  "version": "1.0.3",
+                  "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz"
+                },
+                "inherits": {
+                  "version": "2.0.4"
+                },
+                "isarray": {
+                  "version": "1.0.0",
+                  "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz"
+                },
+                "process-nextick-args": {
+                  "version": "2.0.1",
+                  "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
+                },
+                "safe-buffer": {
+                  "version": "5.1.2",
+                  "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz"
+                },
+                "string_decoder": {
+                  "version": "1.1.1",
+                  "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz",
+                  "dependencies": {
+                    "safe-buffer": {
+                      "version": "5.1.2"
+                    }
+                  }
+                },
+                "util-deprecate": {
+                  "version": "1.0.2",
+                  "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
+                }
+              }
+            }
+          }
+        },
+        "@stdlib/regexp": {
+          "version": "0.0.13",
+          "resolved": "https://registry.npmjs.org/@stdlib/regexp/-/regexp-0.0.13.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/simulate": {
+          "version": "0.0.10",
+          "resolved": "https://registry.npmjs.org/@stdlib/simulate/-/simulate-0.0.10.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/random": {
+              "version": "0.0.12"
+            },
+            "@stdlib/symbol": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/stats": {
+          "version": "0.0.13",
+          "resolved": "https://registry.npmjs.org/@stdlib/stats/-/stats-0.0.13.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/blas": {
+              "version": "0.0.12"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/ndarray": {
+              "version": "0.0.13"
+            },
+            "@stdlib/random": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/symbol": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/streams": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/streams/-/streams-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/buffer": {
+              "version": "0.0.11"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            },
+            "debug": {
+              "version": "2.6.9"
+            },
+            "readable-stream": {
+              "version": "2.3.7"
+            }
+          }
+        },
+        "@stdlib/strided": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/strided/-/strided-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/ndarray": {
+              "version": "0.0.13"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/string": {
+          "version": "0.0.14",
+          "resolved": "https://registry.npmjs.org/@stdlib/string/-/string-0.0.14.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/nlp": {
+              "version": "0.0.11"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/regexp": {
+              "version": "0.0.13"
+            },
+            "@stdlib/streams": {
+              "version": "0.0.12"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/symbol": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/symbol/-/symbol-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/time": {
+          "version": "0.0.14",
+          "resolved": "https://registry.npmjs.org/@stdlib/time/-/time-0.0.14.tgz",
+          "dependencies": {
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/utils": {
+              "version": "0.0.12"
+            }
+          }
+        },
+        "@stdlib/utils": {
+          "version": "0.0.12",
+          "resolved": "https://registry.npmjs.org/@stdlib/utils/-/utils-0.0.12.tgz",
+          "dependencies": {
+            "@stdlib/array": {
+              "version": "0.0.12"
+            },
+            "@stdlib/assert": {
+              "version": "0.0.12"
+            },
+            "@stdlib/blas": {
+              "version": "0.0.12"
+            },
+            "@stdlib/buffer": {
+              "version": "0.0.11"
+            },
+            "@stdlib/cli": {
+              "version": "0.0.10"
+            },
+            "@stdlib/constants": {
+              "version": "0.0.11"
+            },
+            "@stdlib/fs": {
+              "version": "0.0.12"
+            },
+            "@stdlib/math": {
+              "version": "0.0.11"
+            },
+            "@stdlib/os": {
+              "version": "0.0.12"
+            },
+            "@stdlib/process": {
+              "version": "0.0.12"
+            },
+            "@stdlib/random": {
+              "version": "0.0.12"
+            },
+            "@stdlib/regexp": {
+              "version": "0.0.13"
+            },
+            "@stdlib/streams": {
+              "version": "0.0.12"
+            },
+            "@stdlib/string": {
+              "version": "0.0.14"
+            },
+            "@stdlib/symbol": {
+              "version": "0.0.12"
+            },
+            "@stdlib/time": {
+              "version": "0.0.14"
+            },
+            "@stdlib/types": {
+              "version": "0.0.14"
+            },
+            "debug": {
+              "version": "2.6.9"
+            }
+          }
+        }
+      }
+    },
+    "escape-html": {
+      "version": "1.0.3",
+      "resolved": "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz"
+    },
+    "serve-static": {
+      "version": "1.15.0",
+      "resolved": "https://registry.npmjs.org/serve-static/-/serve-static-1.15.0.tgz",
+      "dependencies": {
+        "encodeurl": {
+          "version": "1.0.2",
+          "resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-1.0.2.tgz"
+        },
+        "escape-html": {
+          "version": "1.0.3"
+        },
+        "parseurl": {
+          "version": "1.3.3",
+          "resolved": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz"
+        },
+        "send": {
+          "version": "0.18.0",
+          "resolved": "https://registry.npmjs.org/send/-/send-0.18.0.tgz",
+          "dependencies": {
+            "debug": {
+              "version": "2.6.9"
+            },
+            "depd": {
+              "version": "2.0.0",
+              "resolved": "https://registry.npmjs.org/depd/-/depd-2.0.0.tgz"
+            },
+            "destroy": {
+              "version": "1.2.0",
+              "resolved": "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz"
+            },
+            "encodeurl": {
+              "version": "1.0.2"
+            },
+            "escape-html": {
+              "version": "1.0.3"
+            },
+            "etag": {
+              "version": "1.8.1",
+              "resolved": "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz"
+            },
+            "fresh": {
+              "version": "0.5.2",
+              "resolved": "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
+            },
+            "http-errors": {
+              "version": "2.0.0",
+              "resolved": "https://registry.npmjs.org/http-errors/-/http-errors-2.0.0.tgz",
+              "dependencies": {
+                "depd": {
+                  "version": "2.0.0"
+                },
+                "inherits": {
+                  "version": "2.0.4"
+                },
+                "setprototypeof": {
+                  "version": "1.2.0",
+                  "resolved": "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.2.0.tgz"
+                },
+                "statuses": {
+                  "version": "2.0.1"
+                },
+                "toidentifier": {
+                  "version": "1.0.1",
+                  "resolved": "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz"
+                }
+              }
+            },
+            "mime": {
+              "version": "1.6.0",
+              "resolved": "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz"
+            },
+            "ms": {
+              "version": "2.1.3",
+              "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
+            },
+            "on-finished": {
+              "version": "2.4.1",
+              "resolved": "https://registry.npmjs.org/on-finished/-/on-finished-2.4.1.tgz",
+              "dependencies": {
+                "ee-first": {
+                  "version": "1.1.1",
+                  "resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz"
+                }
+              }
+            },
+            "range-parser": {
+              "version": "1.2.1",
+              "resolved": "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz"
+            },
+            "statuses": {
+              "version": "2.0.1",
+              "resolved": "https://registry.npmjs.org/statuses/-/statuses-2.0.1.tgz"
+            }
+          }
+        }
+      }
+    },
+    "uuid": {
+      "version": "3.4.0",
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.4.0.tgz"
+    }
+  }
+}

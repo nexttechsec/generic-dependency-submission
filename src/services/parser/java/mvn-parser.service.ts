@@ -1,8 +1,5 @@
 import { ParserService } from "../parser.service";
 import { XMLParser } from "fast-xml-parser";
-import fs from "fs";
-import { AppError } from "../../../commons/error/app-error";
-import { AppErrorType } from "../../../commons/error/app-error-type";
 import { TreeUtil } from "../../../commons/util/tree-util";
 import {
   DependencyMetadataByEdgeId,
@@ -13,12 +10,16 @@ import { DependencySubmissionInputItemModel } from "../../../models/dependency-s
 import { ParserOutputModel } from "../../../models/parser/output/parser-output.model";
 import { ParserOutputItemModel } from "../../../models/parser/output/parser-output-item.model";
 import { ActionWrapperService } from "../../action-wrapper/action-wrapper.service";
-import * as path from "path";
+import { AbstractParserService } from "../abstract-parser.service";
 
-export class MvnParserService implements ParserService {
+export class MvnParserService
+  extends AbstractParserService
+  implements ParserService
+{
   private readonly _parser: XMLParser;
 
-  constructor(private actionWrapperService: ActionWrapperService) {
+  constructor(actionWrapperService: ActionWrapperService) {
+    super(actionWrapperService);
     this._parser = new XMLParser({ ignoreAttributes: false });
   }
 
@@ -52,17 +53,6 @@ export class MvnParserService implements ParserService {
         null
       ),
     };
-  }
-
-  private getFile(filename: string): Buffer {
-    try {
-      return fs.readFileSync(
-        path.join(this.actionWrapperService.getProjectBasePath(), filename)
-      );
-    } catch (err) {
-      console.error(err);
-      throw new AppError(AppErrorType.MANIFEST_FILE_NOT_FOUND);
-    }
   }
 
   /**
