@@ -23168,48 +23168,57 @@ exports.ActionWrapperService = ActionWrapperService;
 
 /***/ }),
 
-/***/ 5054:
+/***/ 1614:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.MvnParserService = void 0;
-const fast_xml_parser_1 = __nccwpck_require__(2603);
+exports.AbstractParserService = void 0;
 const fs_1 = __importDefault(__nccwpck_require__(7147));
+const path_1 = __importDefault(__nccwpck_require__(1017));
 const app_error_1 = __nccwpck_require__(9785);
 const app_error_type_1 = __nccwpck_require__(7687);
-const tree_util_1 = __nccwpck_require__(9607);
-const path = __importStar(__nccwpck_require__(1017));
-class MvnParserService {
+class AbstractParserService {
     constructor(actionWrapperService) {
         this.actionWrapperService = actionWrapperService;
+    }
+    /**
+     * Get file to read
+     * @param filename
+     * @protected
+     */
+    getFile(filename) {
+        try {
+            return fs_1.default.readFileSync(path_1.default.join(this.actionWrapperService.getProjectBasePath(), filename));
+        }
+        catch (err) {
+            console.error(err);
+            throw new app_error_1.AppError(app_error_type_1.AppErrorType.MANIFEST_FILE_NOT_FOUND);
+        }
+    }
+}
+exports.AbstractParserService = AbstractParserService;
+
+
+/***/ }),
+
+/***/ 5054:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.MvnParserService = void 0;
+const fast_xml_parser_1 = __nccwpck_require__(2603);
+const tree_util_1 = __nccwpck_require__(9607);
+const abstract_parser_service_1 = __nccwpck_require__(1614);
+class MvnParserService extends abstract_parser_service_1.AbstractParserService {
+    constructor(actionWrapperService) {
+        super(actionWrapperService);
         this._parser = new fast_xml_parser_1.XMLParser({ ignoreAttributes: false });
     }
     parse(dependencySubmissionInputItemModel) {
@@ -23223,15 +23232,6 @@ class MvnParserService {
             input: dependencySubmissionInputItemModel,
             output: tree_util_1.TreeUtil.createTreeFromDependencyPairs(dependencyNameByEdgeId, sourceEdgeToTargetEdges, rootEdgeId, null),
         };
-    }
-    getFile(filename) {
-        try {
-            return fs_1.default.readFileSync(path.join(this.actionWrapperService.getProjectBasePath(), filename));
-        }
-        catch (err) {
-            console.error(err);
-            throw new app_error_1.AppError(app_error_type_1.AppErrorType.MANIFEST_FILE_NOT_FOUND);
-        }
     }
     /**
      * Create a dictionary where the key is the edgeId unique identifier(sourceId from the edges array)
@@ -23292,6 +23292,101 @@ exports.MvnParserService = MvnParserService;
 
 /***/ }),
 
+/***/ 1260:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.NpmParserService = void 0;
+const abstract_parser_service_1 = __nccwpck_require__(1614);
+const app_error_1 = __nccwpck_require__(9785);
+const app_error_type_1 = __nccwpck_require__(7687);
+const tree_model_1 = __nccwpck_require__(2622);
+const tree_node_model_1 = __nccwpck_require__(2898);
+class NpmParserService extends abstract_parser_service_1.AbstractParserService {
+    constructor(actionWrapperService) {
+        super(actionWrapperService);
+    }
+    parse(dependencySubmissionInputItemModel) {
+        const fileContent = JSON.parse(this.getFile(dependencySubmissionInputItemModel.manifestPath));
+        const tree = this.buildDependencyTree(dependencySubmissionInputItemModel, `${fileContent.name}:${fileContent.version}`, null, fileContent.name, {
+            version: fileContent.version,
+            dependencies: fileContent.dependencies,
+        });
+        return {
+            input: dependencySubmissionInputItemModel,
+            output: tree,
+        };
+    }
+    /**
+     * Build
+     * @param dependencySubmissionInputItemModel
+     * @param rootId
+     * @param parent
+     * @param dependencyName
+     * @param dependency
+     * @private
+     */
+    buildDependencyTree(dependencySubmissionInputItemModel, rootId, parent, dependencyName, dependency) {
+        const [namespace, name] = this.parseNameAndNamespace(dependencyName);
+        const tree = new tree_model_1.TreeModel(rootId, {
+            type: dependencySubmissionInputItemModel.dependencyManagement,
+            namespace,
+            name,
+            version: dependency.version,
+        });
+        const childrenDependencies = dependency.dependencies;
+        if (childrenDependencies !== undefined) {
+            for (const [depName, dep] of Object.entries(childrenDependencies)) {
+                const [namespace, name] = this.parseNameAndNamespace(depName);
+                const newNodeId = `${name}:${dep.version}`;
+                const newNode = new tree_node_model_1.TreeNode(newNodeId, {
+                    type: dependencySubmissionInputItemModel.dependencyManagement,
+                    namespace,
+                    name,
+                    version: dependency.version,
+                });
+                if (parent == null) {
+                    tree.addNode(newNode, rootId);
+                }
+                else {
+                    parent.addChild(newNode);
+                }
+                this.buildDependencyTree(dependencySubmissionInputItemModel, newNodeId, newNode, depName, dep);
+            }
+        }
+        return tree;
+    }
+    /**
+     * parseNameAndNamespace parses the name and namespace from a NPM package name.
+     * Namespace and name are URL-safe encoded, as expected by PackageURL
+     *
+     * @param npmDepName
+     * @returns tuple of namespace and name
+     */
+    parseNameAndNamespace(npmDepName) {
+        const namespaceAndName = npmDepName.split("/");
+        if (namespaceAndName.length == 2) {
+            return [
+                encodeURIComponent(namespaceAndName[0]),
+                encodeURIComponent(namespaceAndName[1]),
+            ];
+        }
+        else if (namespaceAndName.length == 1) {
+            return ["", encodeURIComponent(namespaceAndName[0])];
+        }
+        else {
+            console.error(`expectation violated: package '${npmDepName}' has more than one slash (/) in name`);
+            throw new app_error_1.AppError(app_error_type_1.AppErrorType.INVALID_INPUT);
+        }
+    }
+}
+exports.NpmParserService = NpmParserService;
+
+
+/***/ }),
+
 /***/ 434:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -23303,6 +23398,7 @@ const dependency_submission_input_model_1 = __nccwpck_require__(2640);
 const mvn_parser_service_1 = __nccwpck_require__(5054);
 const app_error_1 = __nccwpck_require__(9785);
 const app_error_type_1 = __nccwpck_require__(7687);
+const npm_parser_service_1 = __nccwpck_require__(1260);
 /**
  * Factory used for picking the right parser instance based on language and dependency management
  */
@@ -23310,7 +23406,11 @@ class ParserFactoryService {
     constructor(actionWrapperService) {
         this._parsers = new Map();
         // JAVA
+        // MAVEN
         this._parsers.set(this.getKey(dependency_submission_input_model_1.AvailableLanguageEnum.JAVA, dependency_submission_input_model_1.AvailableDependencyManagementEnum.MAVEN), new mvn_parser_service_1.MvnParserService(actionWrapperService));
+        // JAVASCRIPT
+        // NPM
+        this._parsers.set(this.getKey(dependency_submission_input_model_1.AvailableLanguageEnum.JAVASCRIPT, dependency_submission_input_model_1.AvailableDependencyManagementEnum.NPM), new npm_parser_service_1.NpmParserService(actionWrapperService));
     }
     /**
      * Get instance of {@ling ParserService} by language and dependencyManagement

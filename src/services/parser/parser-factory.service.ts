@@ -7,6 +7,7 @@ import { MvnParserService } from "./java/mvn-parser.service";
 import { AppError } from "../../commons/error/app-error";
 import { AppErrorType } from "../../commons/error/app-error-type";
 import { ActionWrapperService } from "../action-wrapper/action-wrapper.service";
+import { NpmParserService } from "./javascript/npm-parser.service";
 
 /**
  * Factory used for picking the right parser instance based on language and dependency management
@@ -17,12 +18,23 @@ export class ParserFactoryService {
   constructor(actionWrapperService: ActionWrapperService) {
     this._parsers = new Map<string, ParserService>();
     // JAVA
+    // MAVEN
     this._parsers.set(
       this.getKey(
         AvailableLanguageEnum.JAVA,
         AvailableDependencyManagementEnum.MAVEN
       ),
       new MvnParserService(actionWrapperService)
+    );
+
+    // JAVASCRIPT
+    // NPM
+    this._parsers.set(
+      this.getKey(
+        AvailableLanguageEnum.JAVASCRIPT,
+        AvailableDependencyManagementEnum.NPM
+      ),
+      new NpmParserService(actionWrapperService)
     );
   }
 
