@@ -1,5 +1,4 @@
 import { ParserService } from "../parser.service";
-import { DependencySubmissionInputItemModel } from "../../../models/dependency-submission-input-item.model";
 import { ParserOutputModel } from "../../../models/parser/output/parser-output.model";
 import {
   Dependency,
@@ -12,6 +11,7 @@ import { AppErrorType } from "../../../commons/error/app-error-type";
 import { TreeModel } from "../../../models/tree/tree.model";
 import { ParserOutputItemModel } from "../../../models/parser/output/parser-output-item.model";
 import { TreeNode } from "../../../models/tree/tree-node.model";
+import { DependencySubmissionInputItemModel } from "../../../models/dependency-submission/dependency-submission-input-item.model";
 
 export class NpmParserService
   extends AbstractParserService

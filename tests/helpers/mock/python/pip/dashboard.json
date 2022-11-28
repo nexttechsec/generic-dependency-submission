@@ -1,0 +1,721 @@
+[
+    {
+        "package": {
+            "key": "brotli",
+            "package_name": "Brotli",
+            "installed_version": "1.0.9"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "cachetools",
+            "package_name": "cachetools",
+            "installed_version": "5.2.0"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "certifi",
+            "package_name": "certifi",
+            "installed_version": "2022.9.24"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "charset-normalizer",
+            "package_name": "charset-normalizer",
+            "installed_version": "2.1.1"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "click",
+            "package_name": "click",
+            "installed_version": "7.1.2"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "dash",
+            "package_name": "dash",
+            "installed_version": "1.21.0"
+        },
+        "dependencies": [
+            {
+                "key": "dash-core-components",
+                "package_name": "dash-core-components",
+                "installed_version": "1.17.1",
+                "required_version": "==1.17.1"
+            },
+            {
+                "key": "dash-html-components",
+                "package_name": "dash-html-components",
+                "installed_version": "1.1.4",
+                "required_version": "==1.1.4"
+            },
+            {
+                "key": "dash-table",
+                "package_name": "dash-table",
+                "installed_version": "4.12.0",
+                "required_version": "==4.12.0"
+            },
+            {
+                "key": "flask",
+                "package_name": "Flask",
+                "installed_version": "1.1.4",
+                "required_version": ">=1.0.4"
+            },
+            {
+                "key": "flask-compress",
+                "package_name": "flask-compress",
+                "installed_version": "1.13",
+                "required_version": null
+            },
+            {
+                "key": "future",
+                "package_name": "future",
+                "installed_version": "0.18.2",
+                "required_version": null
+            },
+            {
+                "key": "plotly",
+                "package_name": "plotly",
+                "installed_version": "4.7.1",
+                "required_version": null
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "dash-bootstrap-components",
+            "package_name": "dash-bootstrap-components",
+            "installed_version": "0.13.0"
+        },
+        "dependencies": [
+            {
+                "key": "dash",
+                "package_name": "dash",
+                "installed_version": "1.21.0",
+                "required_version": ">=1.9.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "dash-core-components",
+            "package_name": "dash-core-components",
+            "installed_version": "1.17.1"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "dash-extensions",
+            "package_name": "dash-extensions",
+            "installed_version": "0.0.53"
+        },
+        "dependencies": [
+            {
+                "key": "dash",
+                "package_name": "dash",
+                "installed_version": "1.21.0",
+                "required_version": null
+            },
+            {
+                "key": "flask-caching",
+                "package_name": "Flask-Caching",
+                "installed_version": "1.10.0",
+                "required_version": null
+            },
+            {
+                "key": "more-itertools",
+                "package_name": "more-itertools",
+                "installed_version": "9.0.0",
+                "required_version": null
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "dash-html-components",
+            "package_name": "dash-html-components",
+            "installed_version": "1.1.4"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "dash-pivottable",
+            "package_name": "dash-pivottable",
+            "installed_version": "0.0.2"
+        },
+        "dependencies": [
+            {
+                "key": "dash",
+                "package_name": "dash",
+                "installed_version": "1.21.0",
+                "required_version": null
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "dash-table",
+            "package_name": "dash-table",
+            "installed_version": "4.12.0"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "flask",
+            "package_name": "Flask",
+            "installed_version": "1.1.4"
+        },
+        "dependencies": [
+            {
+                "key": "click",
+                "package_name": "click",
+                "installed_version": "7.1.2",
+                "required_version": ">=5.1,<8.0"
+            },
+            {
+                "key": "itsdangerous",
+                "package_name": "itsdangerous",
+                "installed_version": "1.1.0",
+                "required_version": ">=0.24,<2.0"
+            },
+            {
+                "key": "jinja2",
+                "package_name": "Jinja2",
+                "installed_version": "2.11.3",
+                "required_version": ">=2.10.1,<3.0"
+            },
+            {
+                "key": "werkzeug",
+                "package_name": "Werkzeug",
+                "installed_version": "1.0.1",
+                "required_version": ">=0.15,<2.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "flask-caching",
+            "package_name": "Flask-Caching",
+            "installed_version": "1.10.0"
+        },
+        "dependencies": [
+            {
+                "key": "flask",
+                "package_name": "Flask",
+                "installed_version": "1.1.4",
+                "required_version": null
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "flask-compress",
+            "package_name": "Flask-Compress",
+            "installed_version": "1.13"
+        },
+        "dependencies": [
+            {
+                "key": "brotli",
+                "package_name": "brotli",
+                "installed_version": "1.0.9",
+                "required_version": null
+            },
+            {
+                "key": "flask",
+                "package_name": "flask",
+                "installed_version": "1.1.4",
+                "required_version": null
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "future",
+            "package_name": "future",
+            "installed_version": "0.18.2"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "google-api-core",
+            "package_name": "google-api-core",
+            "installed_version": "2.11.0"
+        },
+        "dependencies": [
+            {
+                "key": "google-auth",
+                "package_name": "google-auth",
+                "installed_version": "2.15.0",
+                "required_version": ">=2.14.1,<3.0dev"
+            },
+            {
+                "key": "googleapis-common-protos",
+                "package_name": "googleapis-common-protos",
+                "installed_version": "1.57.0",
+                "required_version": ">=1.56.2,<2.0dev"
+            },
+            {
+                "key": "protobuf",
+                "package_name": "protobuf",
+                "installed_version": "4.21.10",
+                "required_version": ">=3.19.5,<5.0.0dev,!=4.21.5,!=4.21.4,!=4.21.3,!=4.21.2,!=4.21.1,!=4.21.0,!=3.20.1,!=3.20.0"
+            },
+            {
+                "key": "requests",
+                "package_name": "requests",
+                "installed_version": "2.28.1",
+                "required_version": ">=2.18.0,<3.0.0dev"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "google-auth",
+            "package_name": "google-auth",
+            "installed_version": "2.15.0"
+        },
+        "dependencies": [
+            {
+                "key": "cachetools",
+                "package_name": "cachetools",
+                "installed_version": "5.2.0",
+                "required_version": ">=2.0.0,<6.0"
+            },
+            {
+                "key": "pyasn1-modules",
+                "package_name": "pyasn1-modules",
+                "installed_version": "0.2.8",
+                "required_version": ">=0.2.1"
+            },
+            {
+                "key": "rsa",
+                "package_name": "rsa",
+                "installed_version": "4.9",
+                "required_version": ">=3.1.4,<5"
+            },
+            {
+                "key": "six",
+                "package_name": "six",
+                "installed_version": "1.16.0",
+                "required_version": ">=1.9.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "googleapis-common-protos",
+            "package_name": "googleapis-common-protos",
+            "installed_version": "1.57.0"
+        },
+        "dependencies": [
+            {
+                "key": "protobuf",
+                "package_name": "protobuf",
+                "installed_version": "4.21.10",
+                "required_version": ">=3.19.5,<5.0.0dev,!=4.21.5,!=4.21.4,!=4.21.3,!=4.21.2,!=4.21.1,!=3.20.1,!=3.20.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "gunicorn",
+            "package_name": "gunicorn",
+            "installed_version": "20.0.4"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "idna",
+            "package_name": "idna",
+            "installed_version": "3.4"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "itsdangerous",
+            "package_name": "itsdangerous",
+            "installed_version": "1.1.0"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "jinja2",
+            "package_name": "Jinja2",
+            "installed_version": "2.11.3"
+        },
+        "dependencies": [
+            {
+                "key": "markupsafe",
+                "package_name": "MarkupSafe",
+                "installed_version": "2.0.1",
+                "required_version": ">=0.23"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "markupsafe",
+            "package_name": "MarkupSafe",
+            "installed_version": "2.0.1"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "more-itertools",
+            "package_name": "more-itertools",
+            "installed_version": "9.0.0"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "numpy",
+            "package_name": "numpy",
+            "installed_version": "1.23.5"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "opencensus",
+            "package_name": "opencensus",
+            "installed_version": "0.11.0"
+        },
+        "dependencies": [
+            {
+                "key": "google-api-core",
+                "package_name": "google-api-core",
+                "installed_version": "2.11.0",
+                "required_version": ">=1.0.0,<3.0.0"
+            },
+            {
+                "key": "opencensus-context",
+                "package_name": "opencensus-context",
+                "installed_version": "0.1.3",
+                "required_version": ">=0.1.3"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "opencensus-context",
+            "package_name": "opencensus-context",
+            "installed_version": "0.1.3"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "opencensus-ext-azure",
+            "package_name": "opencensus-ext-azure",
+            "installed_version": "1.0.7"
+        },
+        "dependencies": [
+            {
+                "key": "opencensus",
+                "package_name": "opencensus",
+                "installed_version": "0.11.0",
+                "required_version": ">=0.7.12,<1.0.0"
+            },
+            {
+                "key": "psutil",
+                "package_name": "psutil",
+                "installed_version": "5.9.4",
+                "required_version": ">=5.6.3"
+            },
+            {
+                "key": "requests",
+                "package_name": "requests",
+                "installed_version": "2.28.1",
+                "required_version": ">=2.19.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "opencensus-ext-flask",
+            "package_name": "opencensus-ext-flask",
+            "installed_version": "0.7.4"
+        },
+        "dependencies": [
+            {
+                "key": "flask",
+                "package_name": "flask",
+                "installed_version": "1.1.4",
+                "required_version": ">=0.12.3,<2.0.0"
+            },
+            {
+                "key": "opencensus",
+                "package_name": "opencensus",
+                "installed_version": "0.11.0",
+                "required_version": ">=0.7.12,<1.0.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "opencensus-ext-logging",
+            "package_name": "opencensus-ext-logging",
+            "installed_version": "0.1.0"
+        },
+        "dependencies": [
+            {
+                "key": "opencensus",
+                "package_name": "opencensus",
+                "installed_version": "0.11.0",
+                "required_version": ">=0.6.0,<1.0.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "opencensus-ext-requests",
+            "package_name": "opencensus-ext-requests",
+            "installed_version": "0.7.4"
+        },
+        "dependencies": [
+            {
+                "key": "opencensus",
+                "package_name": "opencensus",
+                "installed_version": "0.11.0",
+                "required_version": ">=0.7.12,<1.0.0"
+            },
+            {
+                "key": "wrapt",
+                "package_name": "wrapt",
+                "installed_version": "1.14.1",
+                "required_version": ">=1.0.0,<2.0.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "pandas",
+            "package_name": "pandas",
+            "installed_version": "1.2.5"
+        },
+        "dependencies": [
+            {
+                "key": "numpy",
+                "package_name": "numpy",
+                "installed_version": "1.23.5",
+                "required_version": ">=1.16.5"
+            },
+            {
+                "key": "python-dateutil",
+                "package_name": "python-dateutil",
+                "installed_version": "2.8.2",
+                "required_version": ">=2.7.3"
+            },
+            {
+                "key": "pytz",
+                "package_name": "pytz",
+                "installed_version": "2022.6",
+                "required_version": ">=2017.3"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "plotly",
+            "package_name": "plotly",
+            "installed_version": "4.7.1"
+        },
+        "dependencies": [
+            {
+                "key": "retrying",
+                "package_name": "retrying",
+                "installed_version": "1.3.4",
+                "required_version": ">=1.3.3"
+            },
+            {
+                "key": "six",
+                "package_name": "six",
+                "installed_version": "1.16.0",
+                "required_version": null
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "protobuf",
+            "package_name": "protobuf",
+            "installed_version": "4.21.10"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "psutil",
+            "package_name": "psutil",
+            "installed_version": "5.9.4"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "pyasn1",
+            "package_name": "pyasn1",
+            "installed_version": "0.4.8"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "pyasn1-modules",
+            "package_name": "pyasn1-modules",
+            "installed_version": "0.2.8"
+        },
+        "dependencies": [
+            {
+                "key": "pyasn1",
+                "package_name": "pyasn1",
+                "installed_version": "0.4.8",
+                "required_version": ">=0.4.6,<0.5.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "python-dateutil",
+            "package_name": "python-dateutil",
+            "installed_version": "2.8.2"
+        },
+        "dependencies": [
+            {
+                "key": "six",
+                "package_name": "six",
+                "installed_version": "1.16.0",
+                "required_version": ">=1.5"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "pytz",
+            "package_name": "pytz",
+            "installed_version": "2022.6"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "redis",
+            "package_name": "redis",
+            "installed_version": "3.5.2"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "requests",
+            "package_name": "requests",
+            "installed_version": "2.28.1"
+        },
+        "dependencies": [
+            {
+                "key": "certifi",
+                "package_name": "certifi",
+                "installed_version": "2022.9.24",
+                "required_version": ">=2017.4.17"
+            },
+            {
+                "key": "charset-normalizer",
+                "package_name": "charset-normalizer",
+                "installed_version": "2.1.1",
+                "required_version": ">=2,<3"
+            },
+            {
+                "key": "idna",
+                "package_name": "idna",
+                "installed_version": "3.4",
+                "required_version": ">=2.5,<4"
+            },
+            {
+                "key": "urllib3",
+                "package_name": "urllib3",
+                "installed_version": "1.26.13",
+                "required_version": ">=1.21.1,<1.27"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "retrying",
+            "package_name": "retrying",
+            "installed_version": "1.3.4"
+        },
+        "dependencies": [
+            {
+                "key": "six",
+                "package_name": "six",
+                "installed_version": "1.16.0",
+                "required_version": ">=1.7.0"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "rsa",
+            "package_name": "rsa",
+            "installed_version": "4.9"
+        },
+        "dependencies": [
+            {
+                "key": "pyasn1",
+                "package_name": "pyasn1",
+                "installed_version": "0.4.8",
+                "required_version": ">=0.1.3"
+            }
+        ]
+    },
+    {
+        "package": {
+            "key": "six",
+            "package_name": "six",
+            "installed_version": "1.16.0"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "urllib3",
+            "package_name": "urllib3",
+            "installed_version": "1.26.13"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "werkzeug",
+            "package_name": "Werkzeug",
+            "installed_version": "1.0.1"
+        },
+        "dependencies": []
+    },
+    {
+        "package": {
+            "key": "wrapt",
+            "package_name": "wrapt",
+            "installed_version": "1.14.1"
+        },
+        "dependencies": []
+    }
+]

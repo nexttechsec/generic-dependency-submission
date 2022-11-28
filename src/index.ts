@@ -1,4 +1,3 @@
-import { DependencySubmissionInputModel } from "./models/dependency-submission-input.model";
 import { ActionWrapperService } from "./services/action-wrapper/action-wrapper.service";
 import { InputValidatorService } from "./services/validator/input-validator.service";
 import {
@@ -10,6 +9,7 @@ import * as github from "@actions/github";
 import { ParserFactoryService } from "./services/parser/parser-factory.service";
 import { MappingService } from "./services/submission/mapping/mapping.service";
 import { SchemaAggregatorService } from "./services/submission/schema-aggregator/schema-aggregator.service";
+import { DependencySubmissionInputModel } from "./models/dependency-submission/dependency-submission-input.model";
 
 try {
   const inputExtractorService: ActionWrapperService =
@@ -36,13 +36,7 @@ try {
     mappingService
   );
 
-  const snapshot: Snapshot = schemaAggregator.aggregate(
-    inputExtractorService.getProjectName(),
-    inputExtractorService.getProjectUrl(),
-    "0.0.1", // TODO: Fix project version
-    data
-  );
-
+  const snapshot: Snapshot = schemaAggregator.aggregate(data);
   submitSnapshot(snapshot)
     .then(() => console.log("Successfully uploaded"))
     .catch(console.error);

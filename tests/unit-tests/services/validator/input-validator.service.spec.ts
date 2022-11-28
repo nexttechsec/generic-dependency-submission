@@ -7,7 +7,7 @@ import {
   AvailableLanguageEnum,
   DependencySubmissionInputModel,
   InputKeysConstants,
-} from "../../../../src/models/dependency-submission-input.model";
+} from "../../../../src/models/dependency-submission/dependency-submission-input.model";
 
 describe("InputValidatorService", () => {
   let underTest: InputValidatorService;
@@ -126,7 +126,7 @@ describe("InputValidatorService", () => {
       "getListValue"
     );
     actionWrapperServiceMockGetListValue.mockReturnValueOnce([
-      "tests/helpers/input/java/mvn/dependency.graphml",
+      "tests/helpers/mock/java/mvn/dependency.graphml",
     ]);
 
     const actionWrapperGetProjectBasePathSpy = jest.spyOn(
@@ -143,7 +143,7 @@ describe("InputValidatorService", () => {
     expect(result).toEqual({
       language: AvailableLanguageEnum.JAVA,
       dependencyManagement: AvailableDependencyManagementEnum.MAVEN,
-      manifestFiles: ["tests/helpers/input/java/mvn/dependency.graphml"],
+      manifestFiles: ["tests/helpers/mock/java/mvn/dependency.graphml"],
     });
     expect(actionWrapperServiceMockGetRawValueSpy).toHaveBeenCalledWith(
       InputKeysConstants.LANGUAGE_KEY

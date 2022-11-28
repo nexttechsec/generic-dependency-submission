@@ -34,13 +34,13 @@ export class MappingService {
           newPackage.parsedPackage,
           PackageUrlUtil.parseDependencyScope(newPackage.scope ?? "")
         );
-      }
-
-      manifest.addIndirectDependency(
+      } else {
         // indirect dependencies
-        newPackage.parsedPackage,
-        PackageUrlUtil.parseDependencyScope(newPackage.scope ?? "")
-      );
+        manifest.addIndirectDependency(
+          newPackage.parsedPackage,
+          PackageUrlUtil.parseDependencyScope(newPackage.scope ?? "")
+        );
+      }
     }
 
     return manifest;

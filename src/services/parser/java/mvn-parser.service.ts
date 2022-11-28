@@ -1,21 +1,17 @@
-import { ParserService } from "../parser.service";
 import { XMLParser } from "fast-xml-parser";
 import { TreeUtil } from "../../../commons/util/tree-util";
-import {
-  DependencyMetadataByEdgeId,
-  SourceEdgeToTargetEdges,
-} from "../../../models/parser/java/mvn/graph-dep.model";
-import { AvailableDependencyManagementEnum } from "../../../models/dependency-submission-input.model";
-import { DependencySubmissionInputItemModel } from "../../../models/dependency-submission-input-item.model";
 import { ParserOutputModel } from "../../../models/parser/output/parser-output.model";
 import { ParserOutputItemModel } from "../../../models/parser/output/parser-output-item.model";
 import { ActionWrapperService } from "../../action-wrapper/action-wrapper.service";
 import { AbstractParserService } from "../abstract-parser.service";
+import { DependencySubmissionInputItemModel } from "../../../models/dependency-submission/dependency-submission-input-item.model";
+import {
+  DependencyMetadataByEdgeId,
+  SourceEdgeToTargetEdges,
+} from "../../../models/tree/graph-dep.model";
+import { AvailableDependencyManagementEnum } from "../../../models/dependency-submission/dependency-submission-input.model";
 
-export class MvnParserService
-  extends AbstractParserService
-  implements ParserService
-{
+export class MvnParserService extends AbstractParserService {
   private readonly _parser: XMLParser;
 
   constructor(actionWrapperService: ActionWrapperService) {

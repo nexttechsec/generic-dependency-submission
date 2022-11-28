@@ -22763,7 +22763,7 @@ exports.PackageUrlUtil = void 0;
 const app_error_1 = __nccwpck_require__(9785);
 const app_error_type_1 = __nccwpck_require__(7687);
 const packageurl_js_1 = __nccwpck_require__(8915);
-// TODO: write tests for it
+const dependency_submission_input_model_1 = __nccwpck_require__(6692);
 class PackageUrlUtil {
     constructor() {
         throw new app_error_1.AppError(app_error_type_1.AppErrorType.NOT_IMPLEMENTED);
@@ -22773,7 +22773,7 @@ class PackageUrlUtil {
      * @param parserOutputModel
      */
     static createPackageURL(parserOutputModel) {
-        return new packageurl_js_1.PackageURL(parserOutputModel.type, parserOutputModel.namespace, parserOutputModel.name, parserOutputModel.version, parserOutputModel.qualifiers, parserOutputModel.subpath);
+        return new packageurl_js_1.PackageURL(PackageUrlUtil.parseTypeByAvailableDependencyManagement(parserOutputModel.type), parserOutputModel.namespace, parserOutputModel.name, parserOutputModel.version, parserOutputModel.qualifiers, parserOutputModel.subpath);
     }
     /**
      * Get full identifier based on {@link ParserOutputItemModel}
@@ -22799,8 +22799,29 @@ class PackageUrlUtil {
         }
         return "runtime";
     }
+    /**
+     * Parse desired {@link PackageURL#type} based on the {@link AvailableDependencyManagementEnum}
+     * @param value
+     * @private
+     */
+    static parseTypeByAvailableDependencyManagement(value) {
+        const type = PackageUrlUtil.TYPE_BY_AVAILABLE_DEPENDENCY_MANAGEMENT[value];
+        if (!type) {
+            console.error(`Type ${value} cannot be parsed to specific PackageURL type`);
+            throw new app_error_1.AppError(app_error_type_1.AppErrorType.INVALID_INPUT);
+        }
+        return type;
+    }
 }
 exports.PackageUrlUtil = PackageUrlUtil;
+PackageUrlUtil.TYPE_BY_AVAILABLE_DEPENDENCY_MANAGEMENT = {
+    [dependency_submission_input_model_1.AvailableDependencyManagementEnum.MAVEN]: "maven",
+    [dependency_submission_input_model_1.AvailableDependencyManagementEnum.GRADLE]: "maven",
+    [dependency_submission_input_model_1.AvailableDependencyManagementEnum.NPM]: "npm",
+    [dependency_submission_input_model_1.AvailableDependencyManagementEnum.YARN]: "npm",
+    [dependency_submission_input_model_1.AvailableDependencyManagementEnum.PIP]: "pypi",
+    [dependency_submission_input_model_1.AvailableDependencyManagementEnum.POETRY]: "pypi", // TODO: check if this is the mapping
+};
 
 
 /***/ }),
@@ -22816,6 +22837,7 @@ const app_error_1 = __nccwpck_require__(9785);
 const app_error_type_1 = __nccwpck_require__(7687);
 const tree_node_model_1 = __nccwpck_require__(2898);
 const tree_model_1 = __nccwpck_require__(2622);
+// TODO: write tests for it
 class TreeUtil {
     constructor() {
         throw new app_error_1.AppError(app_error_type_1.AppErrorType.NOT_IMPLEMENTED);
@@ -22857,6 +22879,18 @@ class TreeUtil {
     }
 }
 exports.TreeUtil = TreeUtil;
+
+
+/***/ }),
+
+/***/ 7885:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.LIB_VERSION = void 0;
+exports.LIB_VERSION = "2.2.2";
 
 
 /***/ }),
@@ -22908,8 +22942,7 @@ try {
     const parserFactory = new parser_factory_service_1.ParserFactoryService(inputExtractorService);
     const mappingService = new mapping_service_1.MappingService();
     const schemaAggregator = new schema_aggregator_service_1.SchemaAggregatorService(parserFactory, mappingService);
-    const snapshot = schemaAggregator.aggregate(inputExtractorService.getProjectName(), inputExtractorService.getProjectUrl(), "0.0.1", // TODO: Fix project version
-    data);
+    const snapshot = schemaAggregator.aggregate(data);
     (0, dependency_submission_toolkit_1.submitSnapshot)(snapshot)
         .then(() => console.log("Successfully uploaded"))
         .catch(console.error);
@@ -22924,7 +22957,7 @@ catch (error) {
 
 /***/ }),
 
-/***/ 2640:
+/***/ 6692:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -23117,7 +23150,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ActionWrapperService = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
-/* istanbul ignore file */
 class ActionWrapperService {
     /**
      * Get the project base path
@@ -23146,7 +23178,7 @@ class ActionWrapperService {
     getListValue(key) {
         var _a;
         return (_a = core
-            .getInput(key)) === null || _a === void 0 ? void 0 : _a.split("\n").filter((x) => x !== "");
+            .getInput(key)) === null || _a === void 0 ? void 0 : _a.split("\n").map((x) => x.trim()).filter((x) => x !== "");
     }
     /**
      * Get the project url
@@ -23199,6 +23231,15 @@ class AbstractParserService {
             console.error(err);
             throw new app_error_1.AppError(app_error_type_1.AppErrorType.MANIFEST_FILE_NOT_FOUND);
         }
+    }
+    /**
+     * Get file name (without extension)
+     * @param filename
+     * @protected
+     */
+    getFileName(filename) {
+        const fullPath = path_1.default.join(this.actionWrapperService.getProjectBasePath(), filename);
+        return path_1.default.basename(fullPath, path_1.default.extname(fullPath));
     }
 }
 exports.AbstractParserService = AbstractParserService;
@@ -23394,11 +23435,12 @@ exports.NpmParserService = NpmParserService;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ParserFactoryService = void 0;
-const dependency_submission_input_model_1 = __nccwpck_require__(2640);
 const mvn_parser_service_1 = __nccwpck_require__(5054);
 const app_error_1 = __nccwpck_require__(9785);
 const app_error_type_1 = __nccwpck_require__(7687);
 const npm_parser_service_1 = __nccwpck_require__(1260);
+const dependency_submission_input_model_1 = __nccwpck_require__(6692);
+const pip_parser_service_1 = __nccwpck_require__(4761);
 /**
  * Factory used for picking the right parser instance based on language and dependency management
  */
@@ -23411,6 +23453,9 @@ class ParserFactoryService {
         // JAVASCRIPT
         // NPM
         this._parsers.set(this.getKey(dependency_submission_input_model_1.AvailableLanguageEnum.JAVASCRIPT, dependency_submission_input_model_1.AvailableDependencyManagementEnum.NPM), new npm_parser_service_1.NpmParserService(actionWrapperService));
+        // Python
+        // PIP
+        this._parsers.set(this.getKey(dependency_submission_input_model_1.AvailableLanguageEnum.PYTHON, dependency_submission_input_model_1.AvailableDependencyManagementEnum.PIP), new pip_parser_service_1.PipParserService(actionWrapperService));
     }
     /**
      * Get instance of {@ling ParserService} by language and dependencyManagement
@@ -23445,6 +23490,88 @@ exports.ParserFactoryService = ParserFactoryService;
 
 /***/ }),
 
+/***/ 4761:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.PipParserService = void 0;
+const abstract_parser_service_1 = __nccwpck_require__(1614);
+const tree_util_1 = __nccwpck_require__(9607);
+const dependency_submission_input_model_1 = __nccwpck_require__(6692);
+class PipParserService extends abstract_parser_service_1.AbstractParserService {
+    parse(dependencySubmissionInputItemModel) {
+        const fileContent = JSON.parse(this.getFile(dependencySubmissionInputItemModel.manifestPath));
+        /**
+         * In the output file there's no parent node directly
+         * Crete an initial rootEdge it and replace later (after dependencyByName and sourceEdgeToTargetEdges are created)
+         * with the file name (since we don't have for now another way to specify which is the "module" name)
+         */
+        const rootEdgeId = `initial_${Math.random()}:1.0.0`;
+        const dependencyNameByEdgeId = {
+            [rootEdgeId]: {
+                type: dependency_submission_input_model_1.AvailableDependencyManagementEnum.PIP,
+                namespace: null,
+                name: this.getFileName(dependencySubmissionInputItemModel.manifestPath),
+                version: "1.0.0",
+            },
+        };
+        const sourceEdgeToTargetEdges = {
+            [rootEdgeId]: [],
+        };
+        for (const pipDependency of fileContent) {
+            const packageInfo = pipDependency.package;
+            const parentPackageId = this.buildPackageId(packageInfo);
+            if (!dependencyNameByEdgeId[parentPackageId]) {
+                // add dependency in dependencyNameByEdgeId if not already
+                dependencyNameByEdgeId[parentPackageId] = {
+                    type: dependencySubmissionInputItemModel.dependencyManagement,
+                    namespace: null,
+                    name: packageInfo.key,
+                    version: packageInfo.installed_version,
+                    scope: null, // TODO: check if scope can be somehow extracted, otherwise runtime by default
+                };
+            }
+            if (!sourceEdgeToTargetEdges[parentPackageId]) {
+                // add source -> target relationship to sourceEdgeToTargetEdges
+                sourceEdgeToTargetEdges[parentPackageId] = (pipDependency.dependencies || []).map((childDependency) => this.buildPackageId(childDependency));
+            }
+            if (this.isDirectDependency(pipDependency, fileContent)) {
+                // root dependency, add it in sourceEdgeToTargetEdges array for the root
+                sourceEdgeToTargetEdges[rootEdgeId].push(parentPackageId);
+            }
+        }
+        return {
+            input: dependencySubmissionInputItemModel,
+            output: tree_util_1.TreeUtil.createTreeFromDependencyPairs(dependencyNameByEdgeId, sourceEdgeToTargetEdges, rootEdgeId, null),
+        };
+    }
+    buildPackageId(packageInfo) {
+        return `${packageInfo.key}:${packageInfo.installed_version}`;
+    }
+    /**
+     * Check if a particular dependency is a direct dependency or not
+     * @param dependency dependency to check
+     * @param allDependencies list with all dependencies
+     * @private
+     */
+    isDirectDependency(dependency, allDependencies) {
+        const dependencyKey = dependency.package.key;
+        const dependencyVersion = dependency.package.installed_version;
+        return !allDependencies.some((dep) => {
+            var _a;
+            return (dep.package.key !== dependencyKey && // ignore same dependency from the list
+                ((_a = dep.dependencies) === null || _a === void 0 ? void 0 : _a.some((value) => value.key === dependencyKey &&
+                    value.installed_version === dependencyVersion)));
+        });
+    }
+}
+exports.PipParserService = PipParserService;
+
+
+/***/ }),
+
 /***/ 7944:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -23472,9 +23599,10 @@ class MappingService {
                 // direct dependencies
                 manifest.addDirectDependency(newPackage.parsedPackage, package_url_util_1.PackageUrlUtil.parseDependencyScope((_a = newPackage.scope) !== null && _a !== void 0 ? _a : ""));
             }
-            manifest.addIndirectDependency(
-            // indirect dependencies
-            newPackage.parsedPackage, package_url_util_1.PackageUrlUtil.parseDependencyScope((_b = newPackage.scope) !== null && _b !== void 0 ? _b : ""));
+            else {
+                // indirect dependencies
+                manifest.addIndirectDependency(newPackage.parsedPackage, package_url_util_1.PackageUrlUtil.parseDependencyScope((_b = newPackage.scope) !== null && _b !== void 0 ? _b : ""));
+            }
         }
         return manifest;
     }
@@ -23514,24 +23642,24 @@ exports.MappingService = MappingService;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SchemaAggregatorService = void 0;
 const dependency_submission_toolkit_1 = __nccwpck_require__(9810);
+const version_util_1 = __nccwpck_require__(7885);
 class SchemaAggregatorService {
     constructor(parserFactoryService, mappingService) {
         this.parserFactoryService = parserFactoryService;
         this.mappingService = mappingService;
+        this.PROJECT_NAME = "generic-dependency-submission";
+        this.PROJECT_URL = "https://github.com/nexttechsec/generic-dependency-submission";
     }
     /**
      * Aggregate the manifest files into a single snapshot object
-     * @param projectName project name
-     * @param projectUrl project url
-     * @param projectVersion project version
      * @param dependencySubmissionModel instance of {@link DependencySubmissionInputModel}
      */
-    aggregate(projectName, projectUrl, projectVersion, dependencySubmissionModel) {
+    aggregate(dependencySubmissionModel) {
         const parserService = this.parserFactoryService.getParserByCondition(dependencySubmissionModel.language, dependencySubmissionModel.dependencyManagement);
         const snapshot = new dependency_submission_toolkit_1.Snapshot({
-            name: "generic-dependency-submission",
-            url: "https://github.com/nexttechsec/generic-dependency-submission",
-            version: "2.11", // TODO: do not hardcode the version
+            name: this.PROJECT_NAME,
+            url: this.PROJECT_URL,
+            version: version_util_1.LIB_VERSION,
         });
         for (const manifestPath of dependencySubmissionModel.manifestFiles) {
             console.log(`[START] Parsing file ${manifestPath}`);
@@ -23586,10 +23714,10 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InputValidatorService = void 0;
 const app_error_1 = __nccwpck_require__(9785);
 const app_error_type_1 = __nccwpck_require__(7687);
-const dependency_submission_input_model_1 = __nccwpck_require__(2640);
 const enum_util_1 = __nccwpck_require__(8483);
 const fs = __importStar(__nccwpck_require__(7147));
 const path = __importStar(__nccwpck_require__(1017));
+const dependency_submission_input_model_1 = __nccwpck_require__(6692);
 class InputValidatorService {
     constructor(actionWrapperService) {
         this.actionWrapperService = actionWrapperService;

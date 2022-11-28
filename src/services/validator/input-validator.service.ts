@@ -1,15 +1,15 @@
 import { AppError } from "../../commons/error/app-error";
 import { AppErrorType } from "../../commons/error/app-error-type";
+import { ActionWrapperService } from "../action-wrapper/action-wrapper.service";
+import { EnumUtil } from "../../commons/util/enum-util";
+import * as fs from "fs";
+import * as path from "path";
 import {
   AvailableDependencyManagementEnum,
   AvailableLanguageEnum,
   DependencySubmissionInputModel,
   InputKeysConstants,
-} from "../../models/dependency-submission-input.model";
-import { ActionWrapperService } from "../action-wrapper/action-wrapper.service";
-import { EnumUtil } from "../../commons/util/enum-util";
-import * as fs from "fs";
-import * as path from "path";
+} from "../../models/dependency-submission/dependency-submission-input.model";
 
 export class InputValidatorService {
   constructor(private actionWrapperService: ActionWrapperService) {}
