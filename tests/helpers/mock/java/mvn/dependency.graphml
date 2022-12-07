@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key for="node" id="d0" yfiles.type="nodegraphics"/>
+  <key for="edge" id="d1" yfiles.type="edgegraphics"/>
+<graph id="dependencies" edgedefault="directed">
+<node id="392403246"><data key="d0"><y:ShapeNode><y:NodeLabel>org.next:test-project:jar:1.0-SNAPSHOT</y:NodeLabel></y:ShapeNode></data></node>
+<node id="1288815068"><data key="d0"><y:ShapeNode><y:NodeLabel>org.springframework.boot:spring-boot-starter-log4j2:jar:2.6.1:compile</y:NodeLabel></y:ShapeNode></data></node>
+<node id="1206946689"><data key="d0"><y:ShapeNode><y:NodeLabel>org.apache.logging.log4j:log4j-slf4j-impl:jar:2.14.1:compile</y:NodeLabel></y:ShapeNode></data></node>
+<node id="194903130"><data key="d0"><y:ShapeNode><y:NodeLabel>org.slf4j:slf4j-api:jar:1.7.25:compile</y:NodeLabel></y:ShapeNode></data></node>
+<edge source="1206946689" target="194903130"><data key="d1"><y:PolyLineEdge><y:EdgeLabel>compile</y:EdgeLabel></y:PolyLineEdge></data></edge>
+<node id="663215704"><data key="d0"><y:ShapeNode><y:NodeLabel>org.apache.logging.log4j:log4j-api:jar:2.14.1:compile</y:NodeLabel></y:ShapeNode></data></node>
+<edge source="1206946689" target="663215704"><data key="d1"><y:PolyLineEdge><y:EdgeLabel>compile</y:EdgeLabel></y:PolyLineEdge></data></edge>
+<edge source="1288815068" target="1206946689"><data key="d1"><y:PolyLineEdge><y:EdgeLabel>compile</y:EdgeLabel></y:PolyLineEdge></data></edge>
+<node id="1704600661"><data key="d0"><y:ShapeNode><y:NodeLabel>org.apache.logging.log4j:log4j-core:jar:2.14.1:compile</y:NodeLabel></y:ShapeNode></data></node>
+<edge source="1288815068" target="1704600661"><data key="d1"><y:PolyLineEdge><y:EdgeLabel>compile</y:EdgeLabel></y:PolyLineEdge></data></edge>
+<node id="645208036"><data key="d0"><y:ShapeNode><y:NodeLabel>org.apache.logging.log4j:log4j-jul:jar:2.14.1:compile</y:NodeLabel></y:ShapeNode></data></node>
+<edge source="1288815068" target="645208036"><data key="d1"><y:PolyLineEdge><y:EdgeLabel>compile</y:EdgeLabel></y:PolyLineEdge></data></edge>
+<node id="1114525788"><data key="d0"><y:ShapeNode><y:NodeLabel>org.slf4j:jul-to-slf4j:jar:1.7.32:compile</y:NodeLabel></y:ShapeNode></data></node>
+<edge source="1288815068" target="1114525788"><data key="d1"><y:PolyLineEdge><y:EdgeLabel>compile</y:EdgeLabel></y:PolyLineEdge></data></edge>
+<edge source="392403246" target="1288815068"><data key="d1"><y:PolyLineEdge><y:EdgeLabel>compile</y:EdgeLabel></y:PolyLineEdge></data></edge>
+</graph></graphml>

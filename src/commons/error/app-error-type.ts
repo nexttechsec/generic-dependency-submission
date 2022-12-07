@@ -14,7 +14,7 @@ export class AppErrorType {
   private readonly _errorCode: string;
   private readonly _message: string;
 
-  constructor(errorCode: string, message: string) {
+  private constructor(errorCode: string, message: string) {
     this._errorCode = errorCode;
     this._message = message;
   }

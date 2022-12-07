@@ -1,8 +1,10 @@
+import { AvailableDependencyManagementEnum } from "../../dependency-submission/dependency-submission-input.model";
+
 export interface ParserOutputItemModel {
   /**
    *  the package "type" or package "protocol" such as maven, npm, nuget, gem, pypi, etc. Required.
    */
-  type: string;
+  type: AvailableDependencyManagementEnum;
 
   /**
    * some name prefix such as a Maven groupid, a Docker image owner, a GitHub user or organization. Optional and type-specific.

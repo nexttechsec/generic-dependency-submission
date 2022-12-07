@@ -1,13 +1,14 @@
-import {
-  AvailableDependencyManagementEnum,
-  AvailableLanguageEnum,
-} from "../../models/dependency-submission-input.model";
 import { ParserService } from "./parser.service";
 import { MvnParserService } from "./java/mvn-parser.service";
 import { AppError } from "../../commons/error/app-error";
 import { AppErrorType } from "../../commons/error/app-error-type";
 import { ActionWrapperService } from "../action-wrapper/action-wrapper.service";
 import { NpmParserService } from "./javascript/npm-parser.service";
+import {
+  AvailableDependencyManagementEnum,
+  AvailableLanguageEnum,
+} from "../../models/dependency-submission/dependency-submission-input.model";
+import { PipParserService } from "./python/pip-parser.service";
 
 /**
  * Factory used for picking the right parser instance based on language and dependency management
@@ -35,6 +36,16 @@ export class ParserFactoryService {
         AvailableDependencyManagementEnum.NPM
       ),
       new NpmParserService(actionWrapperService)
+    );
+
+    // Python
+    // PIP
+    this._parsers.set(
+      this.getKey(
+        AvailableLanguageEnum.PYTHON,
+        AvailableDependencyManagementEnum.PIP
+      ),
+      new PipParserService(actionWrapperService)
     );
   }
 

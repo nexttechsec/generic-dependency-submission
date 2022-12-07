@@ -3,9 +3,18 @@ import { AppErrorType } from "../../error/app-error-type";
 import { PackageURL } from "packageurl-js";
 import { ParserOutputItemModel } from "../../../models/parser/output/parser-output-item.model";
 import { DependencyScope } from "@github/dependency-submission-toolkit/dist/manifest";
+import { AvailableDependencyManagementEnum } from "../../../models/dependency-submission/dependency-submission-input.model";
 
-// TODO: write tests for it
 export class PackageUrlUtil {
+  private static readonly TYPE_BY_AVAILABLE_DEPENDENCY_MANAGEMENT = {
+    [AvailableDependencyManagementEnum.MAVEN]: "maven",
+    [AvailableDependencyManagementEnum.GRADLE]: "maven",
+    [AvailableDependencyManagementEnum.NPM]: "npm",
+    [AvailableDependencyManagementEnum.YARN]: "npm", // TODO: check if this is the mapping
+    [AvailableDependencyManagementEnum.PIP]: "pypi",
+    [AvailableDependencyManagementEnum.POETRY]: "pypi", // TODO: check if this is the mapping
+  };
+
   private constructor() {
     throw new AppError(AppErrorType.NOT_IMPLEMENTED);
   }
@@ -18,7 +27,9 @@ export class PackageUrlUtil {
     parserOutputModel: ParserOutputItemModel
   ): PackageURL {
     return new PackageURL(
-      parserOutputModel.type,
+      PackageUrlUtil.parseTypeByAvailableDependencyManagement(
+        parserOutputModel.type
+      ),
       parserOutputModel.namespace,
       parserOutputModel.name,
       parserOutputModel.version,
@@ -55,5 +66,26 @@ export class PackageUrlUtil {
     }
 
     return "runtime";
+  }
+
+  /**
+   * Parse desired {@link PackageURL#type} based on the {@link AvailableDependencyManagementEnum}
+   * @param value
+   * @private
+   */
+  private static parseTypeByAvailableDependencyManagement(
+    value: AvailableDependencyManagementEnum
+  ): string {
+    const type: string =
+      PackageUrlUtil.TYPE_BY_AVAILABLE_DEPENDENCY_MANAGEMENT[value];
+
+    if (!type) {
+      console.error(
+        `Type ${value} cannot be parsed to specific PackageURL type`
+      );
+      throw new AppError(AppErrorType.INVALID_INPUT);
+    }
+
+    return type;
   }
 }

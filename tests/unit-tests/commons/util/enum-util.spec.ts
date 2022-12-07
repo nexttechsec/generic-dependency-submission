@@ -1,6 +1,6 @@
 import "jest";
 import { EnumUtil } from "../../../../src/commons/util/enum-util";
-import { AvailableLanguageEnum } from "../../../../src/models/dependency-submission-input.model";
+import { AvailableLanguageEnum } from "../../../../src/models/dependency-submission/dependency-submission-input.model";
 
 describe("EnumUtil", () => {
   it("should cast known value", () => {

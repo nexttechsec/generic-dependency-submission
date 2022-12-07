@@ -1,18 +1,19 @@
 {
   "name": "generic-dependency-submission",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "",
   "main": "src/index.ts",
   "scripts": {
+    "prebuild": "node -p \"'export const LIB_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/commons/util/version-util.ts",
     "build": "tsc",
     "tsc-watch": "tsc-watch --noClear -p tsconfig.json --onSuccess \"node ./dist/src/index.js\"",
     "prepare": "husky install .husky",
     "format": "prettier -w src",
     "lint": "npx eslint 'src/*.ts' --quiet --fix",
     "package": "ncc build --source-map --license licenses.txt --out action-dist",
-    "test": "jest tests --coverage",
+    "test": "jest tests",
     "test:watch": "jest --watch tests",
-    "all": "npm run test && npm run build && npm run package"
+    "all": "npm run build && npm run test && npm run package"
   },
   "repository": {
     "type": "git",

@@ -1,11 +1,16 @@
-import { DependencySubmissionInputModel } from "../../../models/dependency-submission-input.model";
 import { Manifest, Snapshot } from "@github/dependency-submission-toolkit";
 import { ParserFactoryService } from "../../parser/parser-factory.service";
 import { ParserService } from "../../parser/parser.service";
 import { ParserOutputModel } from "../../../models/parser/output/parser-output.model";
 import { MappingService } from "../mapping/mapping.service";
+import { LIB_VERSION } from "../../../commons/util/version-util";
+import { DependencySubmissionInputModel } from "../../../models/dependency-submission/dependency-submission-input.model";
 
 export class SchemaAggregatorService {
+  private readonly PROJECT_NAME = "generic-dependency-submission";
+  private readonly PROJECT_URL =
+    "https://github.com/nexttechsec/generic-dependency-submission";
+
   constructor(
     private parserFactoryService: ParserFactoryService,
     private mappingService: MappingService
@@ -13,15 +18,9 @@ export class SchemaAggregatorService {
 
   /**
    * Aggregate the manifest files into a single snapshot object
-   * @param projectName project name
-   * @param projectUrl project url
-   * @param projectVersion project version
    * @param dependencySubmissionModel instance of {@link DependencySubmissionInputModel}
    */
   aggregate(
-    projectName: string,
-    projectUrl: string,
-    projectVersion: string,
     dependencySubmissionModel: DependencySubmissionInputModel
   ): Snapshot {
     const parserService: ParserService =
@@ -31,9 +30,9 @@ export class SchemaAggregatorService {
       );
 
     const snapshot = new Snapshot({
-      name: "generic-dependency-submission",
-      url: "https://github.com/nexttechsec/generic-dependency-submission",
-      version: "2.11", // TODO: do not hardcode the version
+      name: this.PROJECT_NAME,
+      url: this.PROJECT_URL,
+      version: LIB_VERSION,
     });
 
     for (const manifestPath of dependencySubmissionModel.manifestFiles) {

@@ -5,8 +5,9 @@ import { TreeModel } from "../../models/tree/tree.model";
 import {
   DependencyMetadataByEdgeId,
   SourceEdgeToTargetEdges,
-} from "../../models/parser/java/mvn/graph-dep.model";
+} from "../../models/tree/graph-dep.model";
 
+// TODO: write tests for it
 export class TreeUtil {
   private constructor() {
     throw new AppError(AppErrorType.NOT_IMPLEMENTED);

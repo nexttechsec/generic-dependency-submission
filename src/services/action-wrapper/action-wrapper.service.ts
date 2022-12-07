@@ -1,7 +1,6 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 
-/* istanbul ignore file */
 export class ActionWrapperService {
   /**
    * Get the project base path
@@ -33,6 +32,7 @@ export class ActionWrapperService {
     return core
       .getInput(key)
       ?.split("\n")
+      .map((x) => x.trim())
       .filter((x) => x !== "");
   }
 
