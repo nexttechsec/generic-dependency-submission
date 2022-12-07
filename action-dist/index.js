@@ -22890,7 +22890,7 @@ exports.TreeUtil = TreeUtil;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.LIB_VERSION = void 0;
-exports.LIB_VERSION = "2.2.2";
+exports.LIB_VERSION = "2.2.3";
 
 
 /***/ }),
